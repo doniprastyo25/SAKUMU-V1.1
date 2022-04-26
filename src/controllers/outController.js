@@ -611,12 +611,12 @@ const getDelete = async (req,res) => {
 
 const getGuruKaryawan = async (req, res) =>{
     getmenu(function(listmenu) {
-        res.render('./pages/gurudankaryawan',{
-            title: 'penggajian',
+        res.render('./pages/gj-datakaryawan',{
+            title: 'List Guru',
             page: 'listguru',
-            dess: 'Penggajian',
-            menu: 'penggajian',
-            layout: 'main-layout',
+            dess: 'List Guru',
+            menu: 'datakaryawan',
+            layout: 'gaji-layout',
             listmenu
         })
     })

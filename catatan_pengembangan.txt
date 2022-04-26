@@ -7,4 +7,6 @@
     - masukkan tunjangan
     - masukkan potongan
     - gaji bersih = gaji kotor + tunjangan - potongan
+    - buat database (guru karyawan)
+    - data karyawan->jabatan->penggajian->laporan
 - 
