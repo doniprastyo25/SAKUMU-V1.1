@@ -1,0 +1,80 @@
+<div class="container-fluid p-0">    
+    <div class="row">
+        <div class="col">
+            <h5 ><%= title %></h5>
+            <h6 class="fw-normal"><%= dess %></h6>
+        </div>
+        <div class="col-sm text-end me-3">    
+            <form action="" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm rounded-start" placeholder="Pencarian" aria-label="Pencarian" id="search" name="search">
+                    <button class="btn btn-primary btn-sm rounded-end pe-2" type="submit"><i class="bi bi-search me-2"></i>Cari</button>
+                </div>
+            </form>
+            <div class="mt-3">
+                <!-- jika menggunakan db akan muncul tombol tunggakan -->   
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+          <div class="btn-group dropend">
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle btn-warning fw-bold" data-bs-toggle="dropdown" aria-expanded="false">
+              Keterangan
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item disabled fw-bold" href="#"><span class="dot"></span> </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4 text-end me-3">
+            <form method="get" action="/penerimaan/">
+                <div class="row">
+                    <div class="col-sm-3">
+                        Filter :
+                    </div>
+                    <div class="col-sm">
+                        <div class="input-group">
+                            <input type="date" class="form-control form-control-sm" id="date" name="date" value="" required>
+                            <button type="submit" class="btn btn-primary btn-sm">Terapkan</button>
+                        </div>
+                    </div>
+                </div>    
+            </form>
+        </div>
+    </div>
+    <table class="table table-sm table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+              <th class="text-center" scope="col" style="width: 5%;">No</th>
+              <th class="text-center" scope="col" style="width: 10%;">Tanggal</th>
+              <th class="text-center" scope="col" style="width: 50%;">Uraian</th>
+              <th class="text-center" scope="col" style="width: 20%;">Total</th>
+              <th class="text-center" scope="col" style="width: 15%;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody> 
+          <!-- looping data dari ->inRoutes.js('/:no') ->inController.js(get) -->
+                <tr>
+                    <!-- No diambil dari 1=penerimaan, 2=  -->
+                    <th class="text-center" scope="row">1.<%= data[i].kd %>.<%= data[i].no %> </th>
+                    <td><%= data[i].tanggal %></td>
+                    <!-- kondisi pakai database muncul indikator -->
+                    <td><%if(dbs == 1){%><span class="dot <%= data[i].indikatorkelas %>" ></span><%}%><%= data[i].uraian %></td>
+                    <!--------------------------------------------->
+                    <td><span class="dot <%= data[i].colors %> me-2"></span><%= data[i].totalrp %></td>
+                    <td class="text-center">
+                        <button type="button" class="btn badge btn-success fw-normal me-1" data-bs-toggle="modal" data-bs-target="#inDetail<%= data[i].no %>"><i class="bi bi-info-circle"></i></button>
+                        <%- include('../modals/in-detail', {
+                            data: data[i],
+                            dess: dess
+                        }) %> 
+                        <a href="/penerimaan/<%= sub %>/edit?id=<%= data[i].timestamp %>" class="btn badge btn-primary fw-normal"><i class="bi bi-pencil-square"></i></a>   
+                        <a href="/penerimaan/<%= sub %>/cetakdetail?id=<%=data[i].timestamp %>" class="btn badge btn-primary fw-normal"><i class="bi bi-printer-fill me-2"></i></a>   
+                    </td>
+                </tr>              
+        </tbody>    
+    </table>
+</div>
+  
