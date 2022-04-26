@@ -70,7 +70,7 @@ app.listen(8000, ()=>{
     console.log("");
     console.log(" url : http://localhost:8000");
     console.log("");
-    console.log(" app version 1.1");
+    console.log(" app version 1.0");
     console.log(" _________________________________");
     console.log("");
     

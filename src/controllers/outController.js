@@ -609,9 +609,22 @@ const getDelete = async (req,res) => {
     return result;
 }
 
+const getGuruKaryawan = async (req, res) =>{
+    getmenu(function(listmenu) {
+        res.render('./pages/gurudankaryawan',{
+            title: 'penggajian',
+            page: 'listguru',
+            dess: 'Penggajian',
+            menu: 'penggajian',
+            layout: 'main-layout',
+            listmenu
+        })
+    })
+}
 
 module.exports = {
     noMenu,
+    getGuruKaryawan,
     get,
     getAll,
     getTunggakan,

@@ -6,6 +6,7 @@ const multer = require('multer');
 //controllers
 const mainControll = require('../controllers/mainController');
 const appControll = require('../controllers/appController');
+const outController = require('../controllers/outController')
 
 //GET
 router.get('/', mainControll.getRoot);
@@ -15,6 +16,7 @@ router.get('/login', mainControll.getLogin);
 router.get('/dashboard', mainControll.getDashboard);
 router.get('/profile', mainControll.getProfile);
 router.get('/kas',mainControll.getKas);
+router.get("/penggajian", outController.getGuruKaryawan)
 // get kas bank
 router.get('/aruskas', mainControll.getArusKas);
 router.get('/aruskastanggal', mainControll.getArusKasTanggal);

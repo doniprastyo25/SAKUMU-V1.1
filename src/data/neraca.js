@@ -15,8 +15,7 @@ const getLaporanLabarugi = async function(callback) {
                 FROM SUBMENU a, PENGELUARAN i
                 WHERE a.kd = 2 and a.sub = i.kd 
                 GROUP by a.sub`
-    // var maketable = `CREATE TABLE IF NOT EXISTS "GURUDANKARYAWAN" ("id" INTEGER, "nama" TEXT, "jabatan" TEXT)`
-    // db.prepare(maketable).run()
+
     try {
         const statement = [queIn,queOut].map(sql => db.prepare(sql).all());
         const getIn = statement[0];
