@@ -1,0 +1,55 @@
+<form class="form-group" method="post" action="/pengeluaran/<%= sub %>/edit?id=<%= data.timestamp %>">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3><%= title %> </h3>
+            </div>
+            <div class="col-sm-4 text-end me-3 mt-2">
+                <a href="/pengeluaran/<%= sub %>" class="btn btn-secondary btn-sm me-2"><i class="bi bi-x-circle me-2"></i></i>Batal</a>
+                <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#mHapus">
+                    <i class="bi bi-trash me-2"></i>Hapus
+                </button>
+                <%- include('../modals/out-delete')%>
+                <button type="submit" class="btn btn-success btn-sm"><i class="bi-hdd me-2"></i></i>Simpan Perubahan</button>           
+            </div>
+        </div>
+        <hr>
+        <h6 class="mb-3"><%= subtitle %> </h6>
+        <div class="card bg-white p-3 mb-3">                                
+            <h6 class="text-start fw-normal">Uraian</h6>
+            <div class="input-group input-group-sm mb-3">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="inpUraian" id="inpUraian" required value="<%= data.uraian %>">
+            </div>            
+            <div class="row">
+                <div class="col">
+                    <h6 class="text-start fw-normal">Satuan</h6>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">Rp</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="inpSatuan" id="inpSatuan" required value="<%= data.satuan %>">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-start fw-normal">Jumlah</h6>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                        <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="inpJumlah" id="inpJumlah" required value="<%= data.jumlah %>">
+                    </div>
+                </div>
+            </div>            
+            <h6 class="text-start fw-normal">Kas</h6>
+            <input type="hidden" id="getKas" name="getKas" value="<%= data.kas %>">
+            <div class="input-group input-group-sm mb-3">
+                <select class="form-select" name="inpKas" id="inpKas" value="<%= data.kas %>" required>                      
+                    <option value="<%= data.kas %>"><%= data.nama %></option>  
+                    <% for (let i = 0; i < dkas.length; i++) { %>
+                        <option value="<%= dkas[i].idkas %>"><%= dkas[i].nkas %></option>        
+                      <% } %>      
+                    <option value="kas1">Kas tunai</option>        
+                    <option value="kas3">Kas Bank Lain</option>
+                </select>
+            </div>               
+        </div>
+    </div>
+</form> 
+<script src="/ressources/js/inputRupiah.js"></script>
+<script src="/ressources/js/selectedEdit.js"></script>

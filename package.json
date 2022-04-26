@@ -1,0 +1,60 @@
+{
+  "name": "sakumu",
+  "version": "1.0.0",
+  "description": "aplikasi laporan keuangan sekolah",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "build": "pkg .",
+    "rebuild": "electron-rebuild -f -w better-sqlit3"
+  },
+  "author": "Wahid rizkika",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "better-sqlite3": "^7.5.0",
+    "chart.js": "^3.7.0",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "crypto-js": "^4.1.1",
+    "date-and-time": "^2.0.1",
+    "easyinvoice": "^2.3.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
+    "helmet": "^4.6.0",
+    "is-online": "^9.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "linebreak": "^1.0.2",
+    "min-document": "^2.19.0",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15",
+    "open": "^8.4.0",
+    "pdfkit-table": "^0.1.86",
+    "pdfmake": "^0.2.4",
+    "pkg": "^5.5.2",
+    "read-excel-file": "^5.2.26",
+    "replaceall": "^0.1.6",
+    "run-middleware": "^0.9.10",
+    "rupiah-format": "^1.0.0",
+    "simple-excel-to-json": "^2.3.0"
+  },
+  "bin": "index.js",
+  "pkg": {
+    "assets": [
+      "src/**/*",
+      "img/**/*",
+      "node_modules/linebreak/src/classes.trie",
+      "node_modules/pdfkit/js/data/Helvetica.afm",
+      "node_modules/pdfkit/js/data/Helvetica-Bold.afm",
+      "node_modules/pdfkit/js/data/Helvetica-Oblique.afm"
+    ],
+    "outputPath": "dist",
+    "targets": [
+      "node16-win-x64"
+    ]
+  }
+}

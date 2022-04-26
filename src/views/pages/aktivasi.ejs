@@ -1,0 +1,45 @@
+<div class="card card-mms-sm text-center mt-5">
+    <div class="card-header">
+      <h5 class="arabic p-3 m-0">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h5>
+    </div>
+    <div class="card-body">
+        <% if(err.length !== 0){%>
+            <div class="alert alert-danger" role="alert"><%= err %></div>
+        <% } %>
+        <% if (off.length !== 0) { %>
+            <div class="alert alert-danger" role="alert"><%= off %></div>
+        <% } %> 
+        <div class="card-title mt-2">
+            <h3 class="d-inline">Selamat datang di </h3><h3 class="d-inline text-primary fw-bold">SAKUMU</h3>
+        </div>
+        <h6 class="card-text">Sistem Aplikasi Keuangan Muhammadiyah.</h6>
+        <p class="text-center mt-5">Silakan lakukan aktivasi terlebih dahulu untuk menggunakan aplikasi.</p>
+        
+        <div class="form-act text-center mt-3">
+            <form class="form-group" method="post" action="/aktivasi">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="inputPassword6" class="fw-normal align-middle">Kode Sekolah</label>
+                    </div>
+                    <div class="input-group col-sm input-group-sm">
+                        <input type="text" class="form-control form-sm" placeholder="Input" name="kdsekolah" id="kdsekolah">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-3">
+                        <label for="inputPassword6" class="fw-normal align-middle">Kode Aktivasi</label>
+                    </div>
+                    <div class="input-group col-sm input-group-sm">
+                        <input type="text" class="form-control form-sm" placeholder="Input" name="kdaktivasi" id="kdaktivasi">
+                    </div>
+                </div>                
+                <button type="submit" class="btn btn-primary btn-sm mt-3 mb-5">                    
+                    Kirim Aktivasi
+                </button>
+            </form>            
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <p class="p-0 m-0">Powered by PT BPRS Mitra Mentari Sejahtera</p>
+    </div>
+  </div>

@@ -1,0 +1,104 @@
+<div class="sidebar d-flex flex-column p-3">
+    <div class="container p-3">
+      <h4 class="text-primary fw-bold">SAKUMU</h4>
+      <p class="fmss fw-normal">Sistem Aplikasi Keuangan Muhammadiyah</p>
+    </div>   
+    <hr>
+    <h6 class="ms-3">Menu</h6>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item mx-2">
+        <a href="/dashboard" <% if(page === 'dashboard'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-speedometer2 col-1 px-0 ms-2"></i>
+          <span class="fms fw-normal col-9 px-0 ms-2">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a href="/profile" <% if(page === 'profile'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-building col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">Profil Sekolah</span>
+        </a>
+      </li>
+    </ul>
+    <h6 class="ms-3 mt-4">Laporan</h6>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item mx-2">
+        <a class="nav-link row" <% if(listmenu.in.length > 0){%>href="#" data-bs-toggle="collapse" data-bs-target="#in-collapse" aria-expanded="false"<% }else{ %> href="/penerimaan"<%}%>>
+          <i class="bi bi-receipt col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-1 px-0 ms-2">Penerimaan</span>
+        </a>
+        <div class="collapse <% if(menu === 'penerimaan'){%> show <% }else{ %> hide <% } %> " id="in-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">            
+            <% for (let i = 0; i < listmenu.in.length; i++) { %>
+              <li class="nav-item">
+                <a href="/penerimaan/<%= listmenu.in[i].sub %>"
+                  <% if(page === "1"+listmenu.in[i].sub){ %> class="nav-link active row fw-normal fmss" <% }else{ %> class="nav-link row fw-normal fmss" <% } %> >
+                  <i class="bi bi-dot"></i><%= listmenu.in[i].nama %>
+                </a>
+              </li>                   
+            <% } %>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a class="nav-link row" <% if(listmenu.out.length > 0){%>href="#" data-bs-toggle="collapse" data-bs-target="#out-collapse" aria-expanded="false"<% }else{ %> href="/pengeluaran"<%}%>>
+          <i class="bi bi-cart col-1 px-0 ms-2"></i>
+          <span class="fms fw-normal col-1 px-0 ms-2">Pengeluaran</span>
+        </a>
+        <div class="collapse <% if(menu === 'pengeluaran'){%> show<% }else{ %> hide <% } %>" id="out-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <% for (let i = 0; i < listmenu.out.length; i++) { %>
+              <li class="nav-item">
+                <a href="/pengeluaran/<%= listmenu.out[i].sub %>" <% if(page === "2"+listmenu.out[i].sub){ %> class="nav-link active row fw-normal fmss" <% }else{ %> class="nav-link row fw-normal fmss" <% } %> >
+                  <i class="bi bi-dot"></i><%= listmenu.out[i].nama %>
+                </a>
+              </li>                   
+            <% } %>            
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a href="/penggajian" <% if(page === 'penggajian'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-clipboard-data col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">Penggajian</span>
+        </a>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a href="/aruskas" <% if(page === 'aruskas'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-clipboard-data col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">Kas Sekolah</span>
+        </a>
+      </li>
+
+      <!-- <li class="nav-item mx-2">
+        <a href="/cetakkwitansi" <% if(page === 'cetakkwitansi'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-printer-fill col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">Cetak Kwitansi</span>
+        </a>
+      </li> -->
+
+    </ul>
+    <h6 class="ms-3 mt-4">Tools</h6>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item mx-2">
+        <a href="/app/sync" <% if(page === 'sync'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-arrow-repeat col-1 px-0 ms-2"></i>
+          <span class="fms fw-normal col-9 p-0 ms-2">Sinkronisasi</span>
+        </a>
+      </li>
+      <li class="nav-item mx-2">
+        <a href="/settings" <% if(page === 'setting'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-gear col-1 px-0 ms-2"></i>
+          <span class="fms fw-normal col-9 p-0 ms-2">Pengaturan</span>
+        </a>
+      </li>
+      <li class="nav-item mx-2">
+          <a href="/logout" <% if(page === 'logout'){ %>class="nav-link row active"<% } else { %>class="nav-link row"<% } %>>
+            <i class="bi bi-box-arrow-right px-0 ms-2"></i><span class="fms fw-normal col-9 p-0 ms-2">Keluar</span>
+          </a>        
+      </li>
+    </ul>
+</div>

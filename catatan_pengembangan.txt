@@ -1,0 +1,10 @@
+- kasir sekali bayar
+- form tanggal pembayaran
+    - optimalisasi tunggakan
+- slip gaji guru dan karyawan
+    - pilih karyawan
+    - masukkan gaji kotor
+    - masukkan tunjangan
+    - masukkan potongan
+    - gaji bersih = gaji kotor + tunjangan - potongan
+- 

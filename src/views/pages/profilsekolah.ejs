@@ -1,0 +1,60 @@
+<div class="container-fluid p-0">
+    <h2>Profil Sekolah</h2>
+    <hr>
+    <div class="row mt-5">
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-white btn-sm rounded-circle mb-5"></button>
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="text-center my-4">
+                    <img src="/gambar/logo.png" alt="null" class="img-thumb my-5">
+                    <!-- <img src="<%= logo %>" alt="null" class="img-thumb my-5"> -->
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-white btn-sm rounded-circle mb-5"></button>
+            <div class="card shadow mb-5 bg-white rounded">
+                <div class="card-body">
+                    <% if (profil == undefined) { %>
+                        nama sekolah belum diisi
+                    <%} else {%>
+                        <%= profil.NAMASEKOLAH %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="card shadow mb-5 bg-white rounded">
+                <div class="card-body">
+                    <% if (profil == undefined) { %>
+                        alamat sekolah belum diisi
+                    <%} else {%>
+                        <%= profil.ALAMATSEKOLAH %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="card shadow mb-5 bg-white rounded">
+                <div class="card-body">
+                    <% if (profil == undefined) { %>
+                        no telepon belum diisi
+                    <%} else {%>
+                        <%= profil.NOTELP %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="card shadow mb-5 bg-white rounded">
+                <div class="card-body">
+                    <% if (profil == undefined) { %>
+                        kepala sekolah belum diisi
+                    <%} else {%>
+                        <%= profil.KEPALASEKOLAH %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container text-center">
+    <img src="/ressources/null.png" alt="null" class="img-thumb m-5">
+    <h5>MOHON MAAF</h5>
+    <h4>Menu PROFIL SEKOLAH</h4>
+    <h6>sedang tahap pengembangan</h6>
+</div> -->

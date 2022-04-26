@@ -1,0 +1,49 @@
+<h5 class="text-center text-uppercase">Sinkronkan Arus Kas</h5>
+<div class="card">
+    <div class="card-body">
+        <% if (syncalert.length !== 0 ) { %>
+            <div class="alert alert-danger mt-2" role="alert"> <i class="bi bi-exclamation-triangle-fill"></i> <%= syncalert %></div>
+        <% } %>
+        <% if (ceksyncok.length !== 0) { %>
+            <div class="alert alert-success mt-2" role="alert"><%= ceksyncok %></div>
+        <% } %>
+        <% if (ceksyncno.length !== 0) { %>
+            <div class="alert alert-danger mt-2" role="alert"> <i class="bi bi-exclamation-triangle-fill"></i> <%= ceksyncno %></div>
+        <% } %>
+        <% if (kosong.length !== 0) { %>
+            <div class="alert alert-danger mt-2" role="alert"> <i class="bi bi-exclamation-triangle-fill"></i> <%= kosong %></div>
+        <% } %>
+        <% if (offline.length !== 0) { %>
+            <div class="alert alert-danger mt-2" role="alert"> <i class="bi bi-exclamation-triangle-fill"></i> <%= offline %></div>
+        <% } %>
+        <% if (servoff.length !== 0) { %>
+            <div class="alert alert-danger mt-2" role="alert"> <i class="bi bi-exclamation-triangle-fill"></i> <%= servoff %></div>
+        <% } %>
+        <% if (servoff1.length !== 0) { %>
+            <div class="alert alert-danger mt-2" role="alert"> <i class="bi bi-exclamation-triangle-fill"></i> <%= servoff1 %></div>
+        <% } %>
+        <form action="/aruskas/API" method="get">
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Periode</h6>
+                    <div class="row">
+                        <div class="col-sm">
+                            <input type="date" class="form-control form-control-sm" id="startdate" name="startdate" required>
+                        </div>
+                        <div class="col-sm-auto">s/d</div>                    
+                        <div class="col-sm">
+                            <input type="date" class="form-control form-control-sm" id="enddate" name="enddate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-auto align-self-end">
+                    <button type="submit" class="btn btn-sm btn-primary px-3">sinkronisasi</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- <button type="submit" class="btn btn-sm btn-primary px-3">cek sinkronisasi</button>         -->
+    <div class="d-grid gap-2 px-3">
+        <a href="/cekSinkronisasi" class="btn btn-sm btn-primary px-3 mb-3" >cek sinkronisasi</a>
+    </div>
+</div>

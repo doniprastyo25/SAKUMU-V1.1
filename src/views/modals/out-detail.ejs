@@ -1,0 +1,48 @@
+<div class="modal fade" id="outDetail<%= data.no %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white">Detail <%= dess %> </h5>
+            </div>
+            <div class="modal-body text-start">
+                <table class="table table-bordered table-striped table-sm">
+                    <tbody>
+                      <tr>                        
+                        <td class="fw-bold ps-2" style="width: 20%;">Nomor</td>
+                        <td>2.<%= data.kd %>.<%= data.no %></td>
+                      </tr>
+                      <tr>                        
+                        <td class="fw-bold ps-2" style="width: 20%;">Tanggal</td>
+                        <td><%= data.tanggal %> </td>
+                      </tr>     
+                      <tr>
+                        <td class="fw-bold ps-2" style="width: 20%;">Uraian</td>
+                        <td><%= data.uraian %> </td>
+                      </tr>  
+                      <tr>
+                        <td class="fw-bold ps-2" style="width: 20%;">Satuan</td>
+                        <td><%= data.satuanrp %> </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold ps-2" style="width: 20%;">Jumlah</td>
+                        <td><%= data.jumlah %> </td>
+                      </tr>      
+                      <tr>
+                        <td class="fw-bold ps-2" style="width: 20%;">Total</td>
+                        <td><%= data.totalrp %> </td>
+                      </tr>     
+                      <tr>
+                        <td class="fw-bold ps-2" style="width: 20%;">Kas</td>
+                        <td>
+                          <%= data.nama %>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

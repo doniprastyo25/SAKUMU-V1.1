@@ -1,0 +1,144 @@
+<div class="card">
+    <div class="card-body">
+        <form action="/aruskastanggal" method="get">
+            <div class="row">
+                <div class="col-sm">  
+                    <h6>Kas</h6>                  
+                    <select class="form-select form-select-sm" name="inpKas" id="inpKas" required>
+                        <option value="semua">Semua Kas</option>   
+                        <% for (let i = 0; i < dkas.length; i++) { %>
+                            <option value="<%= dkas[i].idkas %>"><%= dkas[i].nkas %></option>        
+                          <% } %> 
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <h6>Periode</h6>
+                    <div class="row">
+                        <div class="col-sm">
+                            <input type="date" class="form-control form-control-sm" id="startdate" name="startdate" required>
+                        </div>
+                        <div class="col-sm-auto">s/d</div>                    
+                        <div class="col-sm">
+                            <input type="date" class="form-control form-control-sm" id="enddate" name="enddate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-auto align-self-end">
+                    <button type="submit" class="btn btn-sm btn-primary px-3">Tampilkan</button>
+                </div>
+            </div>
+        </form>        
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-body">
+        <% if (succ.length !== 0) { %>
+            <div class="alert alert-success mt-2" role="alert"><%= succ %></div>
+        <% } %>
+        <h5 class="text-center text-uppercase">Laporan Arus Kas</h5>
+        <table class="table table-sm table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                  <th class="text-center" scope="col" style="width: 10%;">Nomor</th>
+                  <th class="text-center" scope="col" style="width: 60%;">Uraian</th>
+                  <th class="text-center" scope="col" style="width: 30%;">Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="fw-bold">PENERIMAAN</td>
+                    <td></td>
+                </tr>
+                <% for( let i = 0; i < penerimaan.length; i++ ) { %>
+                <tr>
+                    <td class="text-center">1.<%= penerimaan[i].sub %> </td>
+                    <td><%= penerimaan[i].dess %> </td>
+                    <td class="text-end"><%= penerimaan[i].total %> </td>
+                </tr>
+                <% } %>
+                <tr>
+                    <td></td>
+                    <td class="fw-bold">TOTAL PENERIMAAN</td>
+                    <td class="fw-bold text-end"><%= total_penerimaan %></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm  table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                  <th class="text-center" scope="col" style="width: 10%;">Nomor</th>
+                  <th class="text-center" scope="col" style="width: 60%;">Uraian</th>
+                  <th class="text-center" scope="col" style="width: 30%;">Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th></th>
+                    <td class="fw-bold">PENGELUARAN</td>
+                    <td></td>
+                </tr>
+                <% for( let i = 0; i < pengeluaran.length; i++ ) { %>
+                <tr>
+                    <td class="text-center">1.<%= pengeluaran[i].sub %> </td>
+                    <td><%= pengeluaran[i].dess %> </td>
+                    <td class="text-end"><%= pengeluaran[i].total %> </td>
+                </tr>
+                <% } %>
+                <tr>
+                    <td></td>
+                    <td class="fw-bold">TOTAL PENGELUARAN</td>
+                    <td class="fw-bold text-end"><%= total_pengeluaran %></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <table class="table table-sm  table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                  <th class="text-center" scope="col" style="width: 70%;">Total Kas</th>
+                  <th class="text-center" scope="col" style="width: 30%;"><%= totalall %></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <form action="/cetaklaporan" method="get">
+            <div class="row">
+                <div class="col-sm">  
+                    <h6>Kas</h6>                  
+                    <select class="form-select form-select-sm" name="inpKas" id="inpKas" required>
+                        <option value="semua">Semua Kas</option>   
+                        <% for (let i = 0; i < dkas.length; i++) { %>
+                            <option value="<%= dkas[i].idkas %>"><%= dkas[i].nkas %></option>        
+                          <% } %> 
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <h6>Periode</h6>
+                    <div class="row">
+                        <div class="col-sm">
+                            <input type="date" class="form-control form-control-sm" id="startdate" name="startdate" required>
+                        </div>
+                        <div class="col-sm-auto">s/d</div>                    
+                        <div class="col-sm">
+                            <input type="date" class="form-control form-control-sm" id="enddate" name="enddate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-auto align-self-end">
+                    <button type="submit" class="btn btn-sm btn-primary px-3"><i class="bi bi-printer-fill me-2"></i> Cetak Laporan</button>
+                    <!-- <button type="button" class="btn btn-sm btn-success px-3" data-bs-toggle="modal" data-bs-target="#uplaporan"><i class="bi bi-cloud-arrow-up-fill"></i> upload laporan</button>
+                    <%- include('../modals/up-laporan') %> -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <div class="card mt-3">
+    <button type="button" class="btn btn-success btn-block" data-bs-dismiss="modal"><i class="bi bi-printer-fill me-2"></i>cetak laporan</button>
+</div> -->

@@ -1,0 +1,21 @@
+<div class="modal fade" id="editSiswa<%= nis %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title text-white">Edit siswa</h5>
+        </div>
+        <form method="post" action="/settings/editsiswa?nis=<%= nis %>&kd=<%= kd %>">
+            <div class="modal-body text-start">
+                <label for="editNama" class="form-label">Nama</label>
+                <div class="input-group input-group-sm">
+                    <input type="text"  class="form-control" name="editNama" id="editNama" value="<%= nama %>">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-success btn-sm">Simpan Perubahan</button>                
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
