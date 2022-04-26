@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <link rel="stylesheet" href="/ressources/css/donut.css">
+  <link rel="stylesheet" href="/ressources/css/cart.css">
+    <h2>Dashboard</h2>
+    <hr>
+
+    <!-- tabel chart donut -->
+    <table class="table" id="dataTable" style="display:none">
+      <thead>
+        <th>Items Sold</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= total_penerimaan%></td>
+        </tr>
+        <tr>
+          <td><%= total_pengeluaran%></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- tabel chart chart -->
+    <table class="table" id="dataTable1" style="display:none">
+      <thead>
+        <th>year</th>
+        <th>Items Sold</th>
+      </thead>
+      <tbody>
+        <% for( let i = 0; i < kas.length; i++ ) { %>
+          <tr>
+            <td><%= kas[i].nama%></td>
+            <td><%= kas[i].total%></td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+    
+    <div class="row g-3">
+      <div class="col">
+        <div class="donut-container">
+          <canvas id="donut" ></canvas>
+        </div>
+      </div>
+      <div class="col">
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div> 
+    <script src="/ressources/js/cart.js"></script>
+    <script src="/ressources/js/donut.js"></script>
+</div>
+  

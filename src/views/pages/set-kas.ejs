@@ -1,0 +1,145 @@
+<div class="card">
+    <div class="card-header mb-0 pb-0">
+        <%- include('../partials/setting-header'); %>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid p-0">
+            <h6><i class="bi bi-wallet col-1 px-0 me-2"></i>Kas Sekolah</h6>
+            <div class="card my-3">
+                <div class="row">
+                    <div class="col-sm">
+                        <ul class="list-group list-group-flush ms-2">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <span class="dot bg-success me-2 my-auto"></span>
+                                <div class="me-auto">
+                                    <h6 class="fw-normal m-0 p-0">Kas Tunai</h6>                                                           
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <span class="dot bg-primary me-2 my-auto"></span>
+                                <div class="me-auto">
+                                    <h6 class="fw-normal m-0 p-0">Kas Bank Mitra Syariah</h6>                                                           
+                                </div>
+                            </li>
+                            <% for( let i = 0; i < kas.length; i++ ) { %>
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <span class="dot <%= kas[i].color %> me-2 my-auto"></span>
+                                  <div class="me-auto">
+                                      <h6 class="fw-normal m-0 p-0"><%= kas[i].nama %></h6>                                                           
+                                  </div>
+                                  <button type="button" class="btn btn-info badge" data-bs-toggle="modal" data-bs-target="#mEditKas<%= kas[i].id %>"><i class="bi bi-pencil-square"></i> Edit </button>
+                                  <%- include('../modals/kas-edit', {
+                                    id: kas[i].id,
+                                    nama: kas[i].nama
+                                   }) %>
+                                  <button type="button" class="btn btn-danger badge ms-2" data-bs-toggle="modal" data-bs-target="#mHapusKas<%= kas[i].id %>"><i class="bi bi-trash"></i> hapus </button>
+                                  <%- include('../modals/kas-delete', {
+                                      id: kas[i].id,
+                                      nama: kas[i].nama,
+                                      del: "/settings/delkas?id="+kas[i].id+"&nama="+kas[i].nama
+                                  }) %>
+                              </li>
+                          <% } %>
+                        </ul>
+                    </div>
+                    <div class="col-sm col-set">
+                        <form method="post" action="/settings/addkas">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6 class="mb-3">Tambahkan Kas</h6>
+                                </div>
+                                <div class="col-sm-4 text-end me-3">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus-circle-fill me-2"></i>Tambahkan</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="inpColor" class="form-label">Indikator warna</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                        <select class="form-select form-select-sm" name="inpColor" id="inpColor" required>                          
+                                            <option value="bg-primary">Biru</option>
+                                            <option value="bg-info">Biru muda</option>        
+                                            <option value="bg-success">Hijau</option>
+                                            <option value="bg-teal">Hijau muda</option>
+                                            <option value="bg-danger">Merah</option>
+                                            <option value="bg-warning">Kuning</option>
+                                            <option value="bg-orange">Orange</option>
+                                            <option value="bg-secondary">Grey</option>
+                                            <option value="bg-dark">Hitam</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+                                <div class="col-sm">
+                                    <label for="inpKas" class="form-label">Nama Kas</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                        <input type="text" class="form-control form-control-sm" name="inpKas" id="inpKas" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h6><i class="bi bi-wallet2 col-1 px-0 me-2"></i>Sumber Dana</h6>
+            <div class="card mt-3 mb-3">
+                <div class="row">
+                    <div class="col-sm">
+                        <ul class="list-group list-group-flush ms-2">
+                        <% for( let i = 0; i < sd.length; i++ ) { %>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="me-auto">
+                                    <h6 class="fw-normal m-0 p-0"><%= sd[i].nama %></h6>                                                             
+                                </div>
+                                <button type="button" class="btn btn-danger badge" data-bs-toggle="modal" data-bs-target="#mHapusSd<%= sd[i].id %>"><i class="bi bi-trash"></i> Hapus </button>
+                                <%- include('../modals/dana-delete', {
+                                    id: sd[i].id,
+                                    nama: sd[i].nama,
+                                    del: "/settings/delsumberdana?id="+sd[i].id+"&nama="+sd[i].nama
+                                }) %> 
+                            </li>
+                        <% } %>
+                        </ul>
+                    </div>
+                    <div class="col-sm col-set">
+                        <form method="post" action="/settings/addsumberdana">                            
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6 class="mb-3">Tambahkan Sumber Dana</h6>                    
+                                </div>
+                                <div class="col-sm-4 text-end me-3">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus-circle-fill me-2"></i>Tambahkan</button>
+                                </div>
+                            </div>
+                                                      
+                            <label for="SumberDana" class="form-label">Sumber Dana</label>
+                            <div class="input-group input-group-sm pe-3">
+                              <input type="text" class="form-control" name="SumberDana" id="SumberDana" autocomplete="off" required>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h6><i class="bi bi-card-text"></i> Upload kop kwitansi</h6>
+            <% if (succ.length !== 0) { %>
+                <div class="alert alert-success mt-2" role="alert"><%= succ %></div>
+            <% } %>
+            <div class="card mt-3">
+                <div class="row">
+                    <div class="col-sm col-set">
+                        <form action="/settings/kas/upload" enctype="multipart/form-data" method="post">
+                            <div class="row">
+                              <div class="text-end me-3 col-sm">
+                                  <input type="file" class="form-control form-control-sm" name="image" id="image"  required>
+                              </div>
+                              <div class="text-end col-sm-auto">
+                                  <button type="submit" class="btn btn-sm btn-primary" value="application/x-www-form-urlencoded"><i class="bi bi-upload me-2"></i>Upload</button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

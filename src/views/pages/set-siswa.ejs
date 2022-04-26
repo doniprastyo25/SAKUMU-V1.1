@@ -1,0 +1,60 @@
+<div class="card">
+    <div class="card-header mb-0 pb-0">
+        <%- include('../partials/setting-header'); %>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid p-0">
+            <h6><i class="bi bi-mortarboard col-1 px-0 me-2"></i>Daftar Kelas</h6>
+            <div class="card mt-3">
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-flush ms-2">
+                            <% for( let i = 0; i < data.length; i++ ) { %>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <h6 class="m-0 p-0"><%= data[i].kd %></h6>
+                                        <p class="text-sm"><%= data[i].nama %> </p>                                                              
+                                    </div>
+                                    <button type="button" class="btn btn-danger badge" data-bs-toggle="modal" data-bs-target="#mHapusKelas<%= data[i].kd %>"><i class="bi bi-trash"></i> Hapus </button>
+                                    <%- include('../modals/kelas-delete', {
+                                        kd: data[i].kd,
+                                        nama: data[i].kd,
+                                        del: "/settings/delete/kelas?kd="+data[i].kd
+                                    }) %> 
+                                    <a href="/settings/editkelas?kd=<%= data[i].kd %>" class="btn badge btn-primary fw-normal ms-2"><i class="bi bi-pencil-square"></i> Lihat Kelas</a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div class="col col-set">
+                        <form method="post" action="/settings/addkelas">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6 class="mb-3">Tambahkan Kelas</h6>
+                                </div>
+                                <div class="col-sm-4 text-end me-3">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus-circle-fill me-2"></i>Tambahkan</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="kdKelas" class="form-label">Kode Kelas</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                      <input type="text" class="form-control" name="kdKelas" id="kdKelas" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="namaKelas" class="form-label">Nama Kelas</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                      <input type="text" class="form-control" name="namaKelas" id="namaKelas" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

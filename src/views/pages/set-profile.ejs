@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header mb-0 pb-0">
+        <%- include('../partials/setting-header'); %>
+    </div>
+    <% if (update.length !== 0) {%>
+        <div class="alert alert-success p-2 mt-2" role="alert"><%= update%></div>
+    <% } %>
+    <% if (tambah.length !== 0) { %>
+        <div class="alert alert-success p-2 mt-2" role="alert"><%= tambah%></div>
+    <% } %>
+    <div class="card-body">
+        <div class="container-fluid p-0 mt-3">
+            <div class="card mt-3">
+                <div class="row">
+                    <div class="col col-set">
+                        <div class="col-sm">
+                            <h6 class="mb-3 ms-2"><i class="bi bi-card-text"></i> Identitas Sekolah</h6>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <!-- <a href="#" class="btn btn-primary btn-lg"><i class="bi bi-cloud-arrow-up-fill"></i></a> -->
+                            <button type="button" class="btn btn-primary fw-normal me-1 btn-lg" data-bs-toggle="modal" data-bs-target="#formprofil"><i class="bi bi-card-list"></i></button>
+                            <%- include('../modals/form-profil') %> 
+                        </div>
+                    </div>
+                    <!-- <div class="col col-set">                        
+                        <div class="row">
+                            <div class="col-sm">
+                                <h6 class="mb-3"><i class="bi bi-card-image"></i> Upload Gambar</h6>
+                            </div>
+                        </div>                         
+                        <div class="col-sm">
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="button" class="btn btn-primary fw-normal me-1 btn-lg" data-bs-toggle="modal" data-bs-target="#formlogo"><i class="bi bi-card-image"></i></button>
+                                <%- include('../modals/form-logo') %>
+                            </div>
+                        </div> 
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

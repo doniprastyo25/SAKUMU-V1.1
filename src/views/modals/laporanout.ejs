@@ -1,0 +1,32 @@
+<div class="modal fade" id="laporanout" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white"><i class="bi bi-info-circle me-3"></i></h5>
+            </div>
+            <div class="modal-body text-start">
+                <h5>Pilih periode tanggal yang akan dicetak</h5>
+                <form action="/pengeluaran/<%= sub %>/cetakall" name="<%= title%>" enctype="multipart/form-data" method="get">
+                    <div class="row">
+                        <h6>Periode</h6>
+                        <div class="row">
+                            <div class="col-sm">
+                                <input type="date" class="form-control form-control-sm" id="startdate" name="startdate" required>
+                            </div>
+                            <div class="col-sm-auto">s/d</div>                    
+                            <div class="col-sm">
+                                <input type="date" class="form-control form-control-sm" id="enddate" name="enddate" required>
+                            </div>
+                            <div class="col-sm-auto align-self-end">
+                                <button type="submit" class="btn btn-sm btn-primary px-3"><i class="bi bi-printer-fill me-2"></i> Cetak Laporan</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

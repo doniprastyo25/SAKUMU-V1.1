@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header mb-0 pb-0">
+        <%- include('../partials/setting-header'); %>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-10">
+                    <h6><i class="bi bi-person-circle col-1 px-0 me-2"></i>Reset Akun</h6>
+                    <form action="/" method="post">
+                        <div class="row mt-3" style="width: 50%;">                
+                            <label for="inpUsername" class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm">                    
+                                <input type="text" class="form-control form-control-sm" name="inpUsername" id="inpUsername" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="row" style="width: 50%;">                
+                            <label for="inpPassword" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm">                    
+                                <input type="text" class="form-control form-control-sm" name="inpPassword" id="inpPassword" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end" style="width: 50%;">
+                            <button type="submit" class="btn btn-sm btn-success col-sm-auto me-3"><i class="bi bi-hdd me-2"></i></i>Simpan</button> 
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2">
+                  <!-- <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" value="admin"> <br>
+                  <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" value="bendahara"> -->
+                </div>
+              </div>
+
+        </div>
+    </div>
+</div>

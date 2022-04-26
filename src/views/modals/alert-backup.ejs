@@ -1,0 +1,26 @@
+<div class="modal fade" id="alertbackup" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white"><i class="bi bi-info-circle me-3"></i></h5>
+            </div>
+            <div class="modal-body text-start">
+                <h5>Perhatikan file database saat me restore data</h5>
+                <h6>pastikan file backup database terletak pada SAKUMU-V1/backup/</h6>
+                <form action="/settings/backup/restore" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                      <div class="text-end me-3 col-sm">
+                          <input type="file" class="form-control form-control-sm" name="database" id="database"  required>
+                      </div>
+                      <div class="text-end col-sm-auto">
+                          <button type="submit" class="btn btn-sm btn-primary" value="application/x-www-form-urlencoded"><i class="bi bi-upload me-2"></i> Restore</button>
+                      </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

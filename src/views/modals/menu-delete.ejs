@@ -1,0 +1,24 @@
+<!-- modal delete dimana id berasal dari data yang dilempar dari page menu-edit -->
+<div class="modal fade" id="mHapus<%= id %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger">
+          <!-- buat tulisan dari data menu-edit dengak kondisi kd(1)=penerimaan, kd(2)=pengeluaran -->
+          <h5 class="modal-title text-white">Hapus Menu <% if(kd === 1){%>Penerimaan<%}else if(kd === 2){%>Pengeluaran<% } %></h5>
+        </div>
+        <div class="modal-body text-start">
+            <!-- tulisan peringatan yang dimana nama lemparan data dari set menu -->
+            <h6>Apakah anda yakin ingin menghapus menu "<%= nama %>"?</h6>
+            <H6 class="text-danger fw-bold mt-3">Peringatan!</H6>
+            <p>Dengan menghapus menu maka otomatis akan menghapus data yang sudah diinput</p>
+        </div>
+        <div class="modal-footer">          
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+            <!-- action delete yang merupakan data lemparan dari set menu -->
+            <form method="post" action="<%= del %>">
+                <button type="submit" class="btn btn-danger btn-sm">Iya hapus</button>
+            </form>
+        </div>        
+      </div>
+    </div>
+</div>

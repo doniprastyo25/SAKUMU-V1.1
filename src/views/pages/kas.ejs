@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col align-self-start">
+            <h2><%= title %> </h2>
+        </div>
+        <div class="col-sm-2 mt-2 text-end">
+            <button type="button" class="btn btn-outline-success btn-sm fw-normal" data-bs-toggle="modal" data-bs-target="#modal2"><i class="bi bi-plus-circle-fill me-2"></i>
+                Tambah Kas
+            </button>
+        </div>
+    </div>
+    <hr> 
+    <div class="row">
+        <div class="col">
+            <% const kas1 = kas.filter(item => item.id === 'kas1' ) %> 
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <%= kas1[0].nama %> 
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title fw-bold"><%= kas1[0].total %></h4>
+                        </div>
+                        <div class="col-2">
+                            <i class="fas fa-money-bill-wave fa-2x"></i>                            
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <% const kas2 = kas.filter(item => item.id === 'kas2' ) %>
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <%= kas2[0].nama %>
+                </div>
+                <div class="card-body">
+                    <dic class="row">
+                        <div class="col">
+                            <h4 class="card-title fw-bold"><%= kas2[0].total %></h4>
+                        </div>
+                        <div class="col-2">
+                            <i class="fas fa-money-check fa-2x"></i>
+                        </div>
+                    </dic>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <% const kas3 = kas.filter(item => item.id === 'kas3' ) %>
+            <div class="card">
+                <div class="card-header bg-warning text-white">
+                    <%= kas3[0].nama %>
+                </div>
+                <div class="card-body">
+                    <dic class="row">
+                        <div class="col">
+                            <h4 class="card-title fw-bold"><%= kas3[0].total %></h4>
+                        </div>
+                        <div class="col-2">
+                            <i class="fas fa-money-check fa-2x"></i>
+                        </div>
+                    </dic>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped mt-3 d-none">
+        <thead>
+            <tr>
+              <th class="text-center" scope="col" style="width: 5%;">No</th>
+              <th class="text-center" scope="col" style="width: 50%;">Uraian</th>
+              <th class="text-center" scope="col" style="width: 25%;">Total</th>
+              <th class="text-center" scope="col" style="width: 15%;">Sumber dana</th>
+              <th class="text-center" scope="col" style="width: 5%;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="text-center" scope="row">1</th>
+                <td>Penerimaan yang masih harus diterima pada tahun berjalan </td>
+                <td>-</td>
+                <td>-</td>
+                <td class="text-center">
+                    <button type="button" class="btn badge btn-primary fw-normal" data-bs-toggle="modal" data-bs-target="#modal2"><i class="bi bi-pencil-square me-1"></i>
+                    Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-center" scope="row">2</th>
+                <td>Tunggakan alumni</td>
+                <td>-</td>
+                <td>-</td>
+                <td class="text-center">
+                    <button type="button" class="btn badge btn-primary fw-normal" data-bs-toggle="modal" data-bs-target="#modal2"><i class="bi bi-pencil-square me-1"></i>
+                    Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-center" scope="row">3</th>
+                <td>Pengembalian pinjaman guru dan karyawan</td>
+                <td>-</td>
+                <td>-</td>
+                <td class="text-center">
+                    <button type="button" class="btn badge btn-primary fw-normal" data-bs-toggle="modal" data-bs-target="#modal2"><i class="bi bi-pencil-square me-1"></i>
+                    Edit
+                    </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+    </table>
+</div>
+  

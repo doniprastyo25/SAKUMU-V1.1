@@ -1,0 +1,20 @@
+<div class="modal fade" id="mHapusKas<%= id %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title text-white">Hapus Kas</h5>
+            </div>
+            <div class="modal-body text-start">
+                <h6>Apakah anda yakin ingin menghapus "<%= nama %>"?</h6>
+                <H6 class="text-danger fw-bold mt-3">Peringatan!</H6>
+                <p>Dengan menghapus kas maka otomatis data yang sudah diinput akan terhapus</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+                <form method="post" action="<%= del %>">
+                    <button type="submit" class="btn btn-danger btn-sm">Iya hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+<div class="card">
+    <div class="card-header mb-0 pb-0">
+        <%- include('../partials/setting-header'); %>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid p-0">
+            <h6><i class="bi bi-receipt col-1 px-0 me-2"></i>Penerimaan</h6>
+            <div class="card mt-3">
+                <div class="row">
+                  <!-- show menu pengeluaran -->
+                    <div class="col">
+                      <!-- what is this ? -->
+                      <input type="hidden" id="inmenu" name="inmenu" value="<%= inmenu.length %>">
+                      <!--  -->
+                      <ul class="list-group list-group-flush ms-2">
+                        <!-- looping from appcontroller(getSetMenu) berdasarkan menu penerimaan = inmenu -->
+                      <% for(let i = 0; i < inmenu.length; i++){ %> 
+                          <li class="list-group-item d-flex justify-content-between align-items-start">     
+                              <div class="me-auto">
+                                <!-- looping menu dimana angka pertama diambil dari kolom kd & angka kedua dari kolom sub -->
+                                  <h6 class="m-0 p-0"><%= inmenu[i].kd %>.<%= inmenu[i].sub %> <%= inmenu[i].nama %></h6>
+                                  <p class="text-sm"><%= inmenu[i].dess %> </p>                                                              
+                              </div> 
+                              <!-- tombol hapus dimana memunculkan modal dari /modals/menu-delete -> yang dimana modal target berdasarkan sub -->                                                   
+                              <button type="button" class="btn btn-danger badge" data-bs-toggle="modal" data-bs-target="#mHapusIn<%= inmenu[i].sub %>"><i class="bi bi-trash"></i> Hapus </button>
+                              <!-- panggil modal include dengan ketentuan meneruskan data dari controller berdasarkan id -->
+                              <%- include('../modals/menu-delete', {
+                                  nama: inmenu[i].nama,
+                                  del: "/settings/delmenu?kd="+inmenu[i].kd+"&id="+inmenu[i].sub,
+                                  id: "In"+inmenu[i].sub,
+                                  /* buat kondisi kd(1)=penerimaan */
+                                  kd:1
+                              }) %> 
+                              <!-- panggil modal include dengan ketentuan meneruskan data dari controller berdasarkan id -->
+                              <button type="button" class="btn btn-primary badge ms-2" data-bs-toggle="modal" data-bs-target="#mEditIn<%= inmenu[i].sub %>"><i class="bi bi-pencil-square"></i> Edit </button>                                               
+                              <%- include('../modals/menu-edit', {
+                                  nama: inmenu[i].nama,
+                                  dess: inmenu[i].dess,
+                                  edit: "/settings/editmenu?kd="+inmenu[i].kd+"&id="+inmenu[i].sub,
+                                  id: "In"+inmenu[i].sub,
+                                  kd:1,
+                                  sub: inmenu[i].sub,                                                     
+                                  dbsiswa:inmenu[i].dbsiswa,
+                                  menu: "In"
+                              }) %>
+                          </li>                         
+                      <% } %> 
+                      </ul>
+                    </div>
+                    <!-- end show menu pengeluaran -->
+                    
+                    <!-- form tambah menu Penerimaan -->
+                    <div class="col col-set">
+                      <!-- lempar action form ke routes(settings/addmenu)->appController(addNewMenu)-> data/addmenu.js -->
+                        <form method="post" action="/settings/addmenu?menu=1">                            
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6 class="mb-3">Tambahkan Menu Penerimaan</h6>
+                                </div>
+                                <div class="col-sm-4 text-end me-3">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus-circle-fill me-2"></i>Tambahkan</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="menuNomor" class="form-label">Nomor menu</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                      <input type="number" class="form-control" name="menuNomor" id="menuNomor" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="menuNama" class="form-label">Nama menu</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                      <input type="text" class="form-control" name="menuNama" id="menuNama" required>
+                                    </div>
+                                </div>
+                            </div>                          
+                            <label for="menuDes" class="form-label mt-3">Deskripsi menu</label>
+                            <div class="input-group input-group-sm pe-3">
+                              <input type="text" class="form-control" name="menuDes" id="menuDes" required>
+                            </div>
+                            <!-- kondisi memakai dbsiswa -->
+                            <div class="form-check form-switch mt-3">  
+                                <input type="hidden" id="dbSiswaIn" name="dbSiswaIn" value="0">                              
+                                <input class="form-check-input" type="checkbox" role="switch" name="SwitchCheckDBSiswaIn" id="SwitchCheckDBSiswaIn">
+                                <label class="form-check-label" for="SwitchCheckDBSiswaIn">Gunakan database siswa</label>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end form tambah menu penerimaan -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid p-0 mt-3">
+            <h6><i class="bi bi-cart col-1 px-0 me-2"></i>Pengeluaran</h6>
+            <div class="card mt-3">
+                <div class="row">
+                    <div class="col">
+                        <input type="hidden" id="outmenu" name="outmenu" value="<%= outmenu.length %>">
+                        <ul class="list-group list-group-flush ms-2"></ol>
+                          <!-- looping from appcontroller(getSetMenu) -->
+                            <% for(let i = 0; i < outmenu.length; i++){ %> 
+                                <li class="list-group-item d-flex justify-content-between align-items-start">     
+                                    <div class="me-auto">
+                                        <h6 class="m-0 p-0"><%= outmenu[i].kd %>.<%= outmenu[i].sub %> <%= outmenu[i].nama %></h6>
+                                        <p class="text-sm"><%= outmenu[i].dess %> </p>                                                              
+                                    </div>
+                                    <button type="button" class="btn btn-danger badge" data-bs-toggle="modal" data-bs-target="#mHapusOut<%= outmenu[i].sub %>"><i class="bi bi-trash"></i> Hapus </button>
+                                    <%- include('../modals/menu-delete', {
+                                        nama: outmenu[i].nama,
+                                        del: "/settings/delmenu?kd="+outmenu[i].kd+"&id="+outmenu[i].sub,
+                                        id: "Out"+outmenu[i].sub,
+                                        kd:2
+                                    }) %>                                    
+                                    <button type="submit" class="btn btn-primary badge ms-2" data-bs-toggle="modal" data-bs-target="#mEditOut<%= outmenu[i].sub %>"><i class="bi bi-pencil-square"></i> Edit </button>
+                                    <%- include('../modals/menu-edit', {
+                                        nama: outmenu[i].nama,
+                                        dess: outmenu[i].dess,
+                                        edit: "/settings/editmenu?kd="+outmenu[i].kd+"&id="+outmenu[i].sub,
+                                        id: "Out"+outmenu[i].sub,
+                                        kd:2,
+                                        sub: outmenu[i].sub,
+                                        dbsiswa: outmenu[i].dbsiswa,
+                                        menu: "Out"
+                                    }) %>                 
+                                </li>                         
+                            <% } %> 
+                        </ul>
+                    </div>
+                    <div class="col col-set">                        
+                        <form method="post" action="/settings/addmenu?menu=2">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6 class="mb-3">Tambahkan Menu Pengeluaran</h6>
+                                </div>
+                                <div class="col-sm-4 text-end me-3">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus-circle-fill me-2"></i>Tambahkan</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="menuNomor" class="form-label">Nomor menu</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                        <input type="number" class="form-control" name="menuNomor" id="menuNomor" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="menuNama" class="form-label">Nama menu</label>
+                                    <div class="input-group input-group-sm pe-3">
+                                        <input type="text" class="form-control" name="menuNama" id="menuNama" required>
+                                    </div>
+                                </div>
+                            </div>                          
+                            <label for="menuDes" class="form-label mt-3">Deskripsi menu</label>
+                            <div class="input-group input-group-sm pe-3">
+                                <input type="text" class="form-control" name="menuDes" id="menuDes" required>
+                            </div>
+                            <div class="form-check form-switch mt-3">  
+                                <input type="hidden" id="dbSiswaOut" name="dbSiswaOut" value="0">                              
+                                <input class="form-check-input" type="checkbox" role="switch" name="SwitchCheckDBSiswaOut" id="SwitchCheckDBSiswaOut">
+                                <label class="form-check-label" for="SwitchCheckDBSiswaOut">Gunakan database siswa</label>
+                            </div>                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/ressources/js/switchDBsiswa.js"></script>

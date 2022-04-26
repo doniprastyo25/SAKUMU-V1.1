@@ -1,0 +1,5 @@
+'use strict'
+
+const security_key = `WRKAoaf725e59cf9513dcfe410c45f32AIARcda2e21fc7fd58b41b4a7768e173HZAdff430fe4f458e7395ed4063ba1f4IKK10050b6501a24c1562ec753f72541DIBedb0098c8fde9bad62b2f4c48480b`;
+
+module.exports = {security_key}

@@ -1,0 +1,9 @@
+canvas {
+  /* border: 1px dotted red; */
+}
+.donut-container {
+  position: absolute;
+  margin-right: auto;
+  height: 23vh;
+  width: 23vw;
+}

@@ -1,0 +1,50 @@
+
+//                             if (finalIn.length >= 12 || finalOut >=12) {
+//                                 if (finalIn.length >= 28 || finalOut >=28) {
+//                                 doc.addPage()
+//                                 doc.font('Helvetica').text(`                                                                                                                                                                                            Ponorogo, ......................................`)
+//                                 doc.font('Helvetica').text(`      Mengetahui,                                                                                                                                                                           `)
+//                                 doc.font('Helvetica').text(`     Ketua Majelis                                                                            Kepala Sekolah                                                                           Bendahara`)
+//                                 doc.font('Helvetica').text(` `)
+//                                 doc.font('Helvetica').text(` `)
+//                                 doc.font('Helvetica').text(` `)
+//                                 doc.font('Helvetica').text(` `)
+//                                 doc.font('Helvetica').text(` `)
+//                                 doc.font('Helvetica').text(`Drs. Harry Sumaryanto                                                              .....................................                                                       ..............................................`)
+//                                 }else{
+//                                 // doc.addPage()
+//                                 if (finalIn.length >= 15 || finalOut.length >= 15) {
+//                                     // doc.addPage()
+//                                     doc.font('Helvetica').text(`                                                                                                                                                                                            Ponorogo, ......................................`)
+//                                     doc.font('Helvetica').text(`      Mengetahui,                                                                                                                                                                           `)
+//                                     doc.font('Helvetica').text(`     Ketua Majelis                                                                            Kepala Sekolah                                                                           Bendahara`)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(`Drs. Harry Sumaryanto                                                              .....................................                                                       ..............................................`)
+//                                 } else {
+//                                     doc.addPage()
+//                                     doc.font('Helvetica').text(`                                                                                                                                                                                            Ponorogo, ......................................`)
+//                                     doc.font('Helvetica').text(`      Mengetahui,                                                                                                                                                                           `)
+//                                     doc.font('Helvetica').text(`     Ketua Majelis                                                                            Kepala Sekolah                                                                           Bendahara`)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(` `)
+//                                     doc.font('Helvetica').text(`Drs. Harry Sumaryanto                                                              .....................................                                                       ..............................................`)
+// ``                                }
+//                                 }
+//                             }else{
+//                             doc.font('Helvetica').text(`                                                                                                                                                                                            Ponorogo, ......................................`)
+//                             doc.font('Helvetica').text(`      Mengetahui,                                                                                                                                                                           `)
+//                             doc.font('Helvetica').text(`     Ketua Majelis                                                                            Kepala Sekolah                                                                           Bendahara`)
+//                             doc.font('Helvetica').text(` `)
+//                             doc.font('Helvetica').text(` `)
+//                             doc.font('Helvetica').text(` `)
+//                             doc.font('Helvetica').text(` `)
+//                             doc.font('Helvetica').text(` `)
+//                             doc.font('Helvetica').text(`Drs. Harry Sumaryanto                                                              .....................................                                                       ..............................................`)    
+//                             }

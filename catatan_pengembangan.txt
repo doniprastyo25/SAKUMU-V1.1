@@ -1,0 +1,15 @@
+- cek kembali semua alert
+- kasir sekali bayar
+- form tanggal pembayaran
+    - optimalisasi tunggakan
+- slip gaji guru dan karyawan
+    - pilih karyawan
+    - masukkan gaji kotor
+    - masukkan tunjangan
+    - masukkan potongan
+    - gaji bersih = gaji kotor + tunjangan - potongan
+    - buat tabel guru(id, nama, jabatan)
+    - buat tabel gaji(id, tp, timestamp, jumlah)
+    * pembuatan
+        - ui(menu payroll->daftar guru->daftar gaji perbulan(CRUD)->tambah gaji)
+- 

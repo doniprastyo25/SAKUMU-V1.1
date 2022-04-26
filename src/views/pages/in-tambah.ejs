@@ -1,0 +1,56 @@
+<form class="form-group" method="post" action="/penerimaan/<%= sub %>/newsubmit">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col">
+                <h3><%= title %> </h3>
+            </div>
+            <div class="col-sm-4 text-end mt-2">
+                <a href="/penerimaan/<%= sub %>" class="btn btn-secondary btn-sm me-2"><i class="bi bi-x-circle me-2"></i></i>Batal</a>
+                <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-hdd me-2"></i></i>Simpan</button>           
+            </div>
+        </div>
+        <hr>
+        <h6 class="mb-3"><%= subtitle %> </h6>
+        <div class="card bg-white p-3 mb-3">
+            <div class="row">
+                <label for="inpUraian" class="col-sm-2 col-form-label">Uraian</label>
+                <div class="col-sm">
+                    <input type="text" class="form-control form-control-sm" name="inpUraian" id="inpUraian" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="row">
+                <label for="inpSatuan" class="col-sm-2 col-form-label">Jumlah</label>
+                <div class="col-sm">                    
+                    <input type="text" class="form-control form-control-sm" placeholder="Rp" name="inpSatuan" id="inpSatuan" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="row">
+                <label for="inpJumlah" class="col-sm-2 col-form-label">Satuan</label>
+                <div class="col-sm">
+                    <input type="number" class="form-control form-control-sm" name="inpJumlah" id="inpJumlah" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="row">
+                <label for="inpSDana" class="col-sm-2 col-form-label">Sumber dana</label>
+                <div class="col-sm">
+                    <select class="form-select form-select-sm" name="inpSDana" id="inpSDana" required > 
+                        <% for( let i = 0; i < sd.length; i++ ) { %>
+                        <option value="<%= sd[i].nama %>"><%= sd[i].nama %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+              <label for="inpKas" class="col-sm-2 col-form-label">Kas</label>
+              <div class="col-sm">
+                <select class="form-select form-select-sm" name="inpKas" id="inpKas" required>
+                  <% for( let i = 0; i < kas.length; i++ ) { %>
+                  <option value="<%= kas[i].id %>"><%= kas[i].nama %></option>
+                  <% } %>                          
+                </select>
+              </div>
+            </div>               
+        </div>
+    </div>
+</form> 
+<script src="/ressources/js/inputRupiah.js"></script>
