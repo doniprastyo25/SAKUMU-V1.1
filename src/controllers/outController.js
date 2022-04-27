@@ -4,6 +4,7 @@ const PDFDocument = require("pdfkit-table");
 const PDFkitDoc = require('pdfkit')
 const outData = require('../data/outData.js');
 const outNew = require('../data/outNew.js');
+const outGaji = require('../data/gaji');
 const rupiah = require('rupiah-format');
 const replaceAll = require('replaceall');
 const menu = require('../data/getMenu');
@@ -609,13 +610,54 @@ const getDelete = async (req,res) => {
     return result;
 }
 
-const getGuruKaryawan = async (req, res) =>{
+const getGuruKaryawan = async (req, res, next) =>{
+    await outGaji.getKaryawan()
     getmenu(function(listmenu) {
         res.render('./pages/gj-datakaryawan',{
-            title: 'List Guru',
+            title: 'data karyawan',
             page: 'listguru',
             dess: 'List Guru',
             menu: 'datakaryawan',
+            layout: 'gaji-layout',
+            listmenu
+        })
+    })
+    next()
+}
+
+const getJabatan = async (req, res) =>{
+    getmenu(function(listmenu) {
+        res.render('./pages/gj-jabatan',{
+            title: 'data jabatan',
+            page: 'Jabatan',
+            dess: 'List Jabatan',
+            menu: 'datajabatan',
+            layout: 'gaji-layout',
+            listmenu
+        })
+    })
+}
+
+const getPenggajian = async (req, res) =>{
+    getmenu(function(listmenu) {
+        res.render('./pages/gj-penggajian',{
+            title: 'data penggajian',
+            page: 'penggajian',
+            dess: 'List Penggajian',
+            menu: 'datapenggajian',
+            layout: 'gaji-layout',
+            listmenu
+        })
+    })
+}
+
+const getLaporan = async (req, res) =>{
+    getmenu(function(listmenu) {
+        res.render('./pages/gj-laporan',{
+            title: 'data laporan',
+            page: 'laporan',
+            dess: 'List Laporan',
+            menu: 'datalaporan',
             layout: 'gaji-layout',
             listmenu
         })
@@ -625,6 +667,9 @@ const getGuruKaryawan = async (req, res) =>{
 module.exports = {
     noMenu,
     getGuruKaryawan,
+    getJabatan,
+    getPenggajian,
+    getLaporan,
     get,
     getAll,
     getTunggakan,

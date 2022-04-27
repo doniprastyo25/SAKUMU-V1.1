@@ -9,4 +9,8 @@
     - gaji bersih = gaji kotor + tunjangan - potongan
     - buat database (guru karyawan)
     - data karyawan->jabatan->penggajian->laporan
+        - data karyawan(id, kj, nama)
+        - jabatan(kj, namajabatan, besarangaji)
+        - tunjangan dan potongan(id, jtp(1.tunjangan, 2.potongan), besaran)
+        - penggajian(kd, id, timestamp, besaran)
 - 

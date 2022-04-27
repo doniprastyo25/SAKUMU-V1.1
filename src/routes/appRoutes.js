@@ -16,7 +16,10 @@ router.get('/login', mainControll.getLogin);
 router.get('/dashboard', mainControll.getDashboard);
 router.get('/profile', mainControll.getProfile);
 router.get('/kas',mainControll.getKas);
-router.get("/penggajian", outController.getGuruKaryawan)
+router.get("/gj/datakaryawan", outController.getGuruKaryawan)
+router.get("/gj/jabatan", outController.getJabatan)
+router.get("/gj/penggajian", outController.getPenggajian)
+router.get("/gj/laporan", outController.getLaporan)
 // get kas bank
 router.get('/aruskas', mainControll.getArusKas);
 router.get('/aruskastanggal', mainControll.getArusKasTanggal);
