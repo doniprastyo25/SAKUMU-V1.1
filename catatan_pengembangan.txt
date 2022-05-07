@@ -13,4 +13,24 @@
         - jabatan(kj, namajabatan, besarangaji)
         - tunjangan dan potongan(id, jtp(1.tunjangan, 2.potongan), besaran)
         - penggajian(kd, id, timestamp, besaran)
-- 
+- menu data karyawan(fitur)
+    - menampilkan tabel karyawan(id nam jabatan)
+    - tambah karyawan(form)
+        - id,nama,jabatan(diambil dari tabel jabatan, if jabatan null(list == null))
+    - edit karyawan
+    - hapus karyawan
+- menu data jabatan(fitur)
+    - menampilkan list jabatan dan besaran gaji
+    - tambah jabatan(form)
+        - kj, namajabatan, besarangaji
+    - edit jabatan
+    - hapus jabatan
+- menu penggajian
+    - daftar gaji perbulan
+        - tabel(no, tanggal, nama karyawan, jabatan, detail gaji, edit detail gaji)
+        - tombol tambah penggajian(menuju form)
+            - masukkan tanggal
+            - masukkan nama
+            - masukkan gaji kotor berdasarkan jabatan
+            - tambahkan potongan(dinamis)
+            - 

@@ -611,15 +611,18 @@ const getDelete = async (req,res) => {
 }
 
 const getGuruKaryawan = async (req, res, next) =>{
-    await outGaji.getKaryawan()
     getmenu(function(listmenu) {
-        res.render('./pages/gj-datakaryawan',{
-            title: 'data karyawan',
-            page: 'listguru',
-            dess: 'List Guru',
-            menu: 'datakaryawan',
-            layout: 'gaji-layout',
-            listmenu
+        outGaji.getKaryawan(function(dkaryawan) {
+            console.log(dkaryawan.krows);
+            res.render('./pages/gj-datakaryawan',{
+                title: 'data karyawan',
+                page: 'gj',
+                dess: 'List Guru',
+                menu: 'datakaryawan',
+                layout: 'gaji-layout',
+                listmenu,
+                karyawan: dkaryawan.krows
+            })
         })
     })
     next()
@@ -629,7 +632,7 @@ const getJabatan = async (req, res) =>{
     getmenu(function(listmenu) {
         res.render('./pages/gj-jabatan',{
             title: 'data jabatan',
-            page: 'Jabatan',
+            page: 'gj',
             dess: 'List Jabatan',
             menu: 'datajabatan',
             layout: 'gaji-layout',
@@ -642,7 +645,7 @@ const getPenggajian = async (req, res) =>{
     getmenu(function(listmenu) {
         res.render('./pages/gj-penggajian',{
             title: 'data penggajian',
-            page: 'penggajian',
+            page: 'gj',
             dess: 'List Penggajian',
             menu: 'datapenggajian',
             layout: 'gaji-layout',
@@ -655,7 +658,7 @@ const getLaporan = async (req, res) =>{
     getmenu(function(listmenu) {
         res.render('./pages/gj-laporan',{
             title: 'data laporan',
-            page: 'laporan',
+            page: 'gj',
             dess: 'List Laporan',
             menu: 'datalaporan',
             layout: 'gaji-layout',
