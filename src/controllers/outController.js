@@ -642,6 +642,12 @@ const getJabatan = async (req, res) =>{
 }
 
 const getPenggajian = async (req, res) =>{
+    const now = new Date();
+    const tgl = date.format(now, 'YYYYMM')
+    var get_year = tgl.substring(0,4)
+    var get_month = tgl.substring(4,6)
+    var filter = get_year+"-"+get_month
+    // console.log(filter);
     getmenu(function(listmenu) {
         res.render('./pages/gj-penggajian',{
             title: 'data penggajian',
@@ -649,7 +655,8 @@ const getPenggajian = async (req, res) =>{
             dess: 'List Penggajian',
             menu: 'datapenggajian',
             layout: 'gaji-layout',
-            listmenu
+            listmenu,
+            filter
         })
     })
 }

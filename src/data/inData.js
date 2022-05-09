@@ -68,7 +68,8 @@ const tunggakan = async function (no,month, callback) {
     let filter_month = ""
     if (typeof month === 'undefined') {
         const now = new Date();
-        filter_month = date.format(now, 'YYYYMM');          
+        filter_month = date.format(now, 'YYYYMM');   
+        // console.log(filter_month);       
     }else{
         const displit = month.split("-")
         filter_month = displit.join('');
