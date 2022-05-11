@@ -8,7 +8,17 @@ var formtunjangan = document.getElementById('formtunjangan')
 var add_more_fields1 = document.getElementById('add_more_fields1')
 var remove_fields1 = document.getElementById('remove_fields1')
 
-// logic form potongan
+// variable calculate gaji bersih
+var gajikotor =document.getElementById('gajikotor').value
+// var gajikotor = document.forms["formgaji"]["gajikotor"]
+var tpotongan =document.getElementById('tpotongan').value
+var ttunjangan =document.getElementById('ttunjangan').value
+var formgaji =document.getElementsByName('formgaji').value
+var gajibersih =document.getElementsByName('gajibersih').value
+
+// console.log(gajikotor);
+
+// logic add form potongan
 add_more_fields.onclick = function(){
     var newnpotongan = document.createElement('input');
     newnpotongan.setAttribute('type','text');
@@ -42,7 +52,7 @@ add_more_fields.onclick = function(){
     }
   }
 
-//   logic form tunjangan
+//   logic add form tunjangan
 add_more_fields1.onclick = function() {
     var newntunjangan = document.createElement('input');
     newntunjangan.setAttribute('type','text');
@@ -68,6 +78,7 @@ add_more_fields1.onclick = function() {
     formtunjangan.appendChild(bungkus1);
 }
 
+// logic remove form
 remove_fields1.onclick = function(){
     var input_tags = formtunjangan.getElementsByTagName('div');
     if(input_tags.length = 1) {
@@ -75,3 +86,9 @@ remove_fields1.onclick = function(){
       formtunjangan.removeChild(input_tags[(input_tags.length) - 1]);
     }
   }
+
+// logic calculate 
+function calculate() {
+  var total = gajikotor - tpotongan + ttunjangan
+  gajibersih.value = total
+}
