@@ -8,6 +8,11 @@ var formtunjangan = document.getElementById('formtunjangan')
 var add_more_fields1 = document.getElementById('add_more_fields1')
 var remove_fields1 = document.getElementById('remove_fields1')
 
+// variable for calcuulate
+var gajikotor = document.getElementById('gajikotor')
+var jpotongan = document.getElementById('tpotongan')
+var jtunjangan = document.getElementById('ttunjangan')
+
 // logic form potongan
 add_more_fields.onclick = function(){
     var newnpotongan = document.createElement('input');
@@ -18,7 +23,7 @@ add_more_fields.onclick = function(){
     newnpotongan.setAttribute('id','ntpotongan');
     newnpotongan.setAttribute('autocomplete','off');
     var newjpotongan = document.createElement('input');
-    newjpotongan.setAttribute('type','text');
+    newjpotongan.setAttribute('type','number');
     newjpotongan.setAttribute('class','form-control form-control-sm');
     newjpotongan.setAttribute('placeholder','Rp');
     newjpotongan.setAttribute('name','jtpotongan');
@@ -52,7 +57,7 @@ add_more_fields1.onclick = function() {
     newntunjangan.setAttribute('id','ntunjangan');
     newntunjangan.setAttribute('autocomplete','off');
     var newjtunjangan = document.createElement('input');
-    newjtunjangan.setAttribute('type','text');
+    newjtunjangan.setAttribute('type','number');
     newjtunjangan.setAttribute('class','form-control form-control-sm');
     newjtunjangan.setAttribute('placeholder','Rp');
     newjtunjangan.setAttribute('name','jtunjangan');
