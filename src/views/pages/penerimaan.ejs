@@ -22,6 +22,11 @@
                     sub: sub,
                     title: title
                 }) %>
+                <button type="button" class="btn btn-info badge rounded-pill fw-normal px-3 ms-2" data-bs-toggle="modal" data-bs-target="#listkwitansi"><i class="bi bi-printer-fill me-2"></i>list kwitansi</button>
+                <%- include('../modals/list-kwitansi',{
+                    file,
+                    sub
+                })%>
                 <!-- jika menggunakan db akan muncul tombol tunggakan -->
                 <% if(dbs == 1){%> 
                   <!-- get tunggakan -> inRoutes(get '/:no/tunggakan - inController(getTunggakan) -> inData(tunggakan)') -->
@@ -97,7 +102,7 @@
                             dess: dess
                         }) %> 
                         <a href="/penerimaan/<%= sub %>/edit?id=<%= data[i].timestamp %>" class="btn badge btn-primary fw-normal"><i class="bi bi-pencil-square"></i></a>   
-                        <a href="/penerimaan/<%= sub %>/cetakdetail?id=<%=data[i].timestamp %>" class="btn badge btn-primary fw-normal"><i class="bi bi-printer-fill me-2"></i></a>   
+                        <a href="/penerimaan/<%= sub %>/cetakdetail?id=<%=data[i].timestamp %>&uraian=<%=data[i].uraian%>" class="btn badge btn-primary fw-normal"><i class="bi bi-printer-fill me-2"></i></a>   
                     </td>
                 </tr>
             <% } %>               

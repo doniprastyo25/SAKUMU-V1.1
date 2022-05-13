@@ -8,7 +8,8 @@ const rupiah = require('rupiah-format');
 const replaceAll = require('replaceall');
 const menu = require('../data/getMenu');
 const date = require('date-and-time')
-const path = require('path')
+const path = require('path');
+const open = require('open')
 
 
 //function blank page -> /pages/in-menu-null.ejs => '/'
@@ -28,9 +29,10 @@ const noMenu = async (req,res) => {
 
 //function get data siswa from inData.js(getData) -> /pages/penerimaan
 const get = async (req,res) => {
+    const folderPath = './laporan/kwitansi/penerimaan'
     const no = req.params.no;
     const getdate = req.query.date;
-    console.log(getdate);
+    // console.log(getdate);
     await inData.getData(no,getdate,function(data) {
         let listdata = [];
         for(let i=0;i<data.rows.length;i++){
@@ -67,6 +69,8 @@ const get = async (req,res) => {
                 ckas: kdata.qrows[i].color
               });        
             }
+            const file = fs.readdirSync(folderPath)
+            // console.log(file);
             getmenu(function(listmenu) {
                 const getsub = listmenu.in.filter(item => item.sub === parseInt(no));
                 const dbs = getsub[0].dbsiswa;
@@ -85,14 +89,16 @@ const get = async (req,res) => {
                     msg: req.flash('msg'),
                     succ: req.flash('kwitansisuccess'),
                     err: req.flash('kwitansierror'),
-                    laporansucc: req.flash('cetakallsuccess')
+                    laporansucc: req.flash('cetakallsuccess'),
+                    file
                 });
-            });
+            })
         })
     });
 }
 //get semua data penerimaan
 const getAll = async (req, res) => {
+    const folderPath = './laporan/kwitansi/penerimaan'
     const no = req.params.no;
     await inData.getAllData(no,function(data) {
         let listdata = [];
@@ -131,6 +137,7 @@ const getAll = async (req, res) => {
               });        
             }
             console.log(listkas);
+            const file = fs.readdirSync(folderPath);
             getmenu(function(listmenu) {
               const getsub = listmenu.in.filter(item => item.sub === parseInt(no));
               const dbs = getsub[0].dbsiswa;
@@ -149,7 +156,8 @@ const getAll = async (req, res) => {
                   msg: req.flash('msg'),
                   succ: req.flash('kwitansisuccess'),
                   err: req.flash('kwitansierror'),
-                  laporansucc: req.flash('cetakallsuccess')
+                  laporansucc: req.flash('cetakallsuccess'),
+                  file
               });
           });
         })
@@ -208,6 +216,7 @@ const inSearch = async (req,res) => {
 }
 
 const getSearch = async (req,res) => {
+    const folderPath = './laporan/kwitansi/penerimaan'
     const no = req.params.no;
     const keyword = req.query.keyword;
     await inData.searchFilter(no,keyword, function(data) {
@@ -244,7 +253,7 @@ const getSearch = async (req,res) => {
                   ckas: kdata.qrows[i].color
                 });        
               }
-
+              const file = fs.readdirSync(folderPath);
               getmenu(function(listmenu) {
                   const getsub = listmenu.in.filter(item => item.sub === parseInt(no));
                   const dbs = getsub[0].dbsiswa;
@@ -264,7 +273,8 @@ const getSearch = async (req,res) => {
                       msg: req.flash('msg'),
                       succ: req.flash('kwitansisuccess'),
                       err: req.flash('kwitansierror'),
-                      laporansucc: req.flash('cetakallsuccess')
+                      laporansucc: req.flash('cetakallsuccess'),
+                      file
                   });
               })            
             })
@@ -368,6 +378,7 @@ const cetakAll = async (req, res, next) => {
 const cetakDetail = async (req, res, next) => {
     const no = req.params.no
     const id = req.query.id
+    const name = req.query.uraian
     // const kd = req.query.kd
     let setDate = ""
     const now = new Date();
@@ -383,7 +394,7 @@ const cetakDetail = async (req, res, next) => {
     let dog = new PDFkitDoc(); 
     let doc = new PDFDocument({ margin:20,startY:100, size: 'A5', layout:'landscape'});
     // file name
-    doc.pipe(fs.createWriteStream(`./laporan/kwitansi/penerimaan/kwitansi ${tgl}.pdf`));
+    doc.pipe(fs.createWriteStream(`./laporan/kwitansi/penerimaan/${name} ${tgl}.pdf`));
     await inData.cetakKwitansi(no, id, function (data) {
         const time = data.field.timestamp;
         let str = time.toString();
@@ -499,6 +510,7 @@ const cetakDetail = async (req, res, next) => {
             req.flash('kwitansierror', data.msg);
         }
     })
+    open(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${name} ${tgl}.pdf`))
     next();
 }
 
@@ -627,6 +639,14 @@ const getDelete = async (req,res) => {
     return result;
 }
 
+const printkwitansi = async (req, res) =>{
+    const data = req.query.file;
+    const id = req.params.no;
+    const buka = open(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
+    // const file = fs.readFileSync(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
+    res.redirect(`./`)
+}
+
 //CHECK LOGIN
 async function cekLogin(status) {
     try {
@@ -668,6 +688,7 @@ module.exports = {
     getDelete,
     cekLogin,
     cetakAll,
-    cetakDetail
+    cetakDetail,
+    printkwitansi
     // getBank
 }

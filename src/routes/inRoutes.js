@@ -25,6 +25,7 @@ router.get("/:no/delete", inController.getDelete);
 router.post("/:no/edit", inController.update);
 router.post("/:no", inController.inSearch);
 router.post("/:no/newsubmit", inController.newSubmit);
+router.get("/:no/printkwitansi", inController.printkwitansi)
 
 module.exports = {
     inroutes: router

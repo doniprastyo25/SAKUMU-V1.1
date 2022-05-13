@@ -43,7 +43,20 @@
         </form>
     </div>
     <!-- <button type="submit" class="btn btn-sm btn-primary px-3">cek sinkronisasi</button>         -->
-    <div class="d-grid gap-2 px-3">
+    <!-- <div class="d-grid gap-2 px-3">
         <a href="/cekSinkronisasi" class="btn btn-sm btn-primary px-3 mb-3" >cek sinkronisasi</a>
+    </div> -->
+    <div class="row">
+        <div class="col">
+            <div class="d-grid gap-2 px-3">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#datasinkron" class="btn btn-sm btn-primary px-3 mb-3">Cek Data</button>
+                <%- include('../modals/data-sinkron')%>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-grid gap-2 px-3">
+                <a href="/cekSinkronisasi" class="btn btn-sm btn-primary px-3 mb-3" >cek sinkronisasi</a>
+            </div>
+        </div>
     </div>
 </div>

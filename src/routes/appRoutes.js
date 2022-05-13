@@ -59,6 +59,7 @@ router.post('/settings/delsiswa', appControll.delSelectedSiswa);
 router.post('/settings/editsiswa', appControll.editSelectedSiswa);
 router.post('/settings/profile', appControll.postProfile);
 router.get('/siswa/:kelas', appControll.getListSiswa);
+// router.get('/printkwitansi', appControll.printkwitansi)
 // router.post('/settings/backupdb', appControll.backup);
 
 //----------------------------------------------------------------------------------------------------------------//

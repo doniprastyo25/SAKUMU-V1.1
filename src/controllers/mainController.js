@@ -861,6 +861,17 @@ const cekSinkron = async (req, res) => {
 
 }
 
+const datasinkron = async (req, res) => {
+    const cek = cekLogin(req.session.loggedIn);
+    Promise.resolve(cek).then(result =>{
+        if (result == true) {
+            
+        } else {
+            res.redirect('/logout');
+        }
+    })
+}
+
 //----------------------------------------------------//
 
 //CHECK AKTIVASI
@@ -924,5 +935,6 @@ module.exports = {
     cetakLaporan,
     cektoken,
     getlaporanjson,
-    cekSinkron
+    cekSinkron,
+    datasinkron
 }

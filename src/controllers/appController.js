@@ -8,6 +8,7 @@ const appSiswa = require('../data/siswa');
 const propil = require('../data/profilkop')
 const fs = require('fs');
 const date = require('date-and-time');
+// const open = require('open');
 
 //read excel
 // const readXlsxFile = require('read-excel-file/node')
@@ -723,7 +724,7 @@ const backup = async function(req, res, next) {
     let menit = str.substring(10,12);
     let detik = str.substring(13,15);
     let tgl = day+","+month+","+year+","+jam+"_"+menit+"_"+detik;
-    const dbold = path.resolve(dbPath, './SAKUMU-V1/db/database.db');
+    const dbold = path.resolve(dbPath, './SAKUMU-V1.1/db/database.db');
     // const dbackup = fs.createWriteStream(`./backup/${tgl}/database.db`);
     fs.copyFile(dbold, `./backup/database${tgl}.db`, function (err) {
         if (err) throw err
@@ -737,6 +738,13 @@ const restoreDB = async function(req,res, next) {
     res.redirect('/settings/backup')
     next();
 }
+
+// const printkwitansi = async (req, res) =>{
+//     const data = req.query.file;
+//     const buka = open(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
+//     // const file = fs.readFileSync(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
+//     res.redirect('./penerimaan/')
+// }
 
 
 
@@ -770,5 +778,6 @@ module.exports = {
     backup,
     restoreDB,
     uploadlogo,
-    postProfile
+    postProfile,
+    // printkwitansi
 }
