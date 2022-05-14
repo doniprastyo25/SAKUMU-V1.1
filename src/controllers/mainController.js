@@ -386,22 +386,105 @@ const getSync = async(req, res) => {
         const cek = cekLogin(req.session.loggedIn);
         await Promise.resolve(cek).then(result =>{
             if (result == true) {
-                getmenu(function(listmenu) {
-                    res.render('./pages/sync',{
-                        title: 'Sinkronisasi',
-                        page: 'sync',
-                        menu: 'sync',
-                        layout: 'main-layout',
-                        listmenu,
-                        syncalert: req.flash('syncsuccess'),
-                        ceksyncok: req.flash('ceksyncok'),
-                        ceksyncno: req.flash(`ceksyncno`),
-                        kosong: req.flash(`null`),
-                        offline: req.flash(`offline`),
-                        servoff: req.flash(`serveroff`),
-                        servoff1: req.flash(`serveroff1`)
-                    });
-                })
+                appNeraca.cekLaporanJson(function(data) {
+                    if (data.status === 'no') {
+                        req.flash(`null`, `data belum ada silahkan buat transaksi`)
+                        res.redirect(`/app/sync`)
+                    } else {
+                        const appsekolah = data.data[0].appid
+                        axios({
+                            method:'get',
+                            // url:`http://localhost:3123/API/cekSinkronisasi`,
+                            url:`http://467a0269edbd.sn.mynetname.net:80/API/cekSinkronisasi`,
+                            data: {appsekolah: appsekolah}
+                        }).then(function(response) {
+                            console.log(response.data.result.msg);
+                            const hasil = response.data.result.msg
+                            if (response.data.result.status == `ok`) {
+                                req.flash(`ceksyncok`, `${hasil}`)
+                                // res.redirect(`/app/sync`)
+                            } else {
+                                req.flash(`ceksyncno`, `${hasil}`)
+                                // res.redirect(`/app/sync`)
+                            }
+                        }).catch(function(error) {
+                            if (error.code == 'ECONNREFUSED') {
+                                req.flash(`serveroff`, `server sedang offline`)
+                                // res.redirect(`/app/sync`)
+                            }
+                        })
+                    }
+                    propil.getappid(function(data) {
+                        // console.log(data);
+                        if (data.status == 'ok') {
+                            const terima = data.row.penerimaan
+                            const listpenerimaan = []
+                            let totalin = 0;
+                            for (let i = 0; i < terima.length; i++) {
+                                listpenerimaan.push({
+                                    sub: terima[i].sub,
+                                    dess: terima[i].dess,
+                                    total: terima[i].total,
+                                    totalRp: terima[i].totalRp
+                                })    
+                                totalin += terima[i].total  
+                            }
+                            // console.log(totalin);
+                            const keluar = data.row.pengeluaran
+                            const listpengeluaran = [];
+                            let totalOut = 0;
+                            for (let i = 0; i < keluar.length; i++) {
+                                listpengeluaran.push({
+                                    sub: keluar[i].sub,
+                                    dess: keluar[i].dess,
+                                    total: keluar[i].total,
+                                    totalRp: keluar[i].totalRp
+                                })
+                                totalOut += keluar[i].total
+                            }
+                            const totalAll = totalin - totalOut
+                            getmenu(function(listmenu) {
+                                res.render('./pages/sync',{
+                                    title: 'Sinkronisasi',
+                                    page: 'sync',
+                                    menu: 'sync',
+                                    layout: 'main-layout',
+                                    listmenu,
+                                    syncalert: req.flash('syncsuccess'),
+                                    ceksyncok: req.flash('ceksyncok'),
+                                    ceksyncno: req.flash(`ceksyncno`),
+                                    kosong: req.flash(`null`),
+                                    offline: req.flash(`offline`),
+                                    servoff: req.flash(`serveroff`),
+                                    servoff1: req.flash(`serveroff1`),
+                                    penerimaan: listpenerimaan,
+                                    pengeluaran: listpengeluaran,
+                                    total_penerimaan: rupiah.convert(totalin),
+                                    total_pengeluaran: rupiah.convert(totalOut),
+                                    totalAll: rupiah.convert(totalAll)
+                                });
+                            })
+                        } else {
+                            console.log('no');
+                            getmenu(function(listmenu) {
+                                res.render('./pages/sync',{
+                                    title: 'Sinkronisasi',
+                                    page: 'sync',
+                                    menu: 'sync',
+                                    layout: 'main-layout',
+                                    listmenu,
+                                    syncalert: req.flash('syncsuccess'),
+                                    ceksyncok: req.flash('ceksyncok'),
+                                    ceksyncno: req.flash(`ceksyncno`),
+                                    kosong: req.flash(`null`),
+                                    offline: req.flash(`offline`),
+                                    servoff: req.flash(`serveroff`),
+                                    servoff1: req.flash(`serveroff1`),    
+                                });
+                            })
+                        }
+                    })
+                }) 
             }else{
                 res.redirect('/logout');
             }            
@@ -819,8 +902,6 @@ const cekSinkron = async (req, res) => {
                 await Promise.resolve(cek).then(result =>{
                     if (result == true) {
                         appNeraca.cekLaporanJson(function(data) {
-                            // console.log(appsekolah.length);
-                            // console.log(data.status);
                             if (data.status === 'no') {
                                 req.flash(`null`, `data belum ada silahkan buat transaksi`)
                                 res.redirect(`/app/sync`)
@@ -859,17 +940,6 @@ const cekSinkron = async (req, res) => {
         }
     })();
 
-}
-
-const datasinkron = async (req, res) => {
-    const cek = cekLogin(req.session.loggedIn);
-    Promise.resolve(cek).then(result =>{
-        if (result == true) {
-            
-        } else {
-            res.redirect('/logout');
-        }
-    })
 }
 
 //----------------------------------------------------//
@@ -936,5 +1006,5 @@ module.exports = {
     cektoken,
     getlaporanjson,
     cekSinkron,
-    datasinkron
+    // datasinkron
 }

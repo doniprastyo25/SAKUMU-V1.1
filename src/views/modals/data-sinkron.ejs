@@ -22,15 +22,17 @@
                                 <td class="fw-bold">PENERIMAAN</td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td class="text-center">1.1 </td>
-                                <td>Test</td>
-                                <td class="text-end">3.000.000</td>
-                            </tr>
+                            <% for (let i = 0; i < penerimaan.length; i++) { %>
+                                <tr>
+                                    <td class="text-center">1.<%= penerimaan[i].sub %> </td>
+                                    <td><%= penerimaan[i].dess %> </td>
+                                    <td class="text-end"><%= penerimaan[i].totalRp %> </td>
+                                </tr>                           
+                            <% } %>
                             <tr>
                                 <td></td>
                                 <td class="fw-bold">TOTAL PENERIMAAN</td>
-                                <td class="fw-bold text-end">3.000.000</td>
+                                <td class="fw-bold text-end"><%= total_penerimaan %> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -48,15 +50,17 @@
                                 <td class="fw-bold">PENGELUARAN</td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td class="text-center">1.1 </td>
-                                <td>bar </td>
-                                <td class="text-end">6.500.000 </td>
-                            </tr>
+                            <% for (let i = 0; i < pengeluaran.length; i++) { %>
+                                <tr>
+                                    <td class="text-center">1.<%= pengeluaran[i].sub %> </td>
+                                    <td><%= pengeluaran[i].dess %></td>
+                                    <td class="text-end"><%= pengeluaran[i].totalRp %> </td>
+                                </tr>
+                            <% } %> 
                             <tr>
                                 <td></td>
                                 <td class="fw-bold">TOTAL PENGELUARAN</td>
-                                <td class="fw-bold text-end">6.500.000</td>
+                                <td class="fw-bold text-end"><%= total_pengeluaran %> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -65,7 +69,7 @@
                         <thead>
                             <tr>
                               <th class="text-center" scope="col" style="width: 70%;">Total Kas</th>
-                              <th class="text-center" scope="col" style="width: 30%;">4.000.000</th>
+                              <th class="text-center" scope="col" style="width: 30%;"><%= totalAll %> </th>
                             </tr>
                         </thead>
                     </table>
