@@ -8,24 +8,6 @@ var formtunjangan = document.getElementById('formtunjangan')
 var add_more_fields1 = document.getElementById('add_more_fields1')
 var remove_fields1 = document.getElementById('remove_fields1')
 
-
-// variable for calcuulate
-// var gajikotor = document.getElementById('gajikotor')
-// var jpotongan = document.getElementById('tpotongan')
-// var jtunjangan = document.getElementById('ttunjangan')
-
-// logic form potongan
-
-// variable calculate gaji bersih
-var gajikotor =document.getElementById("gajikotor").value
-// var gajikotor = document.forms["formgaji"]["gajikotor"]
-var tpotongan =document.getElementById('tpotongan').value
-var ttunjangan =document.getElementById('ttunjangan').value
-var formgaji =document.getElementsByName('formgaji').value
-var gajibersih =document.getElementsByName('gajibersih')
-
-// console.log(gajikotor);
-
 // logic add form potongan
 add_more_fields.onclick = function(){
     var newnpotongan = document.createElement('input');
@@ -41,6 +23,7 @@ add_more_fields.onclick = function(){
     newjpotongan.setAttribute('placeholder','Rp');
     newjpotongan.setAttribute('name','jtpotongan');
     newjpotongan.setAttribute('id','jtpotongan');
+    newjpotongan.setAttribute('value','0')
     newjpotongan.setAttribute('autocomplete','off');
     var bungkus = document.createElement("div")
     bungkus.setAttribute('class', 'col-sm-6 mt-3')
@@ -52,6 +35,7 @@ add_more_fields.onclick = function(){
     formpotongan.appendChild(bungkus1);
   }
 
+  // logic remove form
   remove_fields.onclick = function(){
     var input_tags = formpotongan.getElementsByTagName('div');
     if(input_tags.length = 1) {
@@ -75,6 +59,7 @@ add_more_fields1.onclick = function() {
     newjtunjangan.setAttribute('placeholder','Rp');
     newjtunjangan.setAttribute('name','jtunjangan');
     newjtunjangan.setAttribute('id','jtunjangan');
+    newjtunjangan.setAttribute('value','0');
     newjtunjangan.setAttribute('autocomplete','off');
     var bungkus = document.createElement("div")
     bungkus.setAttribute('class', 'col-sm-6 mt-3')
@@ -86,7 +71,7 @@ add_more_fields1.onclick = function() {
     formtunjangan.appendChild(bungkus1);
 }
 
-// logic remove form
+// logic remove form tunjangan
 remove_fields1.onclick = function(){
     var input_tags = formtunjangan.getElementsByTagName('div');
     if(input_tags.length = 1) {
@@ -95,8 +80,85 @@ remove_fields1.onclick = function(){
     }
   }
 
-// logic calculate 
-function calculate() {
-  // var total = gajikotor - tpotongan + ttunjangan
-  gajibersih.value = gajikotor - tpotongan + ttunjangan
+// logic calculate
+var kal = document.getElementById('kalkulasi1')
+kal.onclick = function() {
+  //kalkulasi form potongan-------------------------------------------------------
+  const potong = formpotongan.getElementsByTagName('input')
+  let bilpot = 0
+  for (let i = 0; i < potong.length; i++) {
+      if ([i]%2!=0) {
+        let cal = parseInt(potong[i].value)
+        bilpot += cal
+      }
+  }
+  // end calculate----------------------------------------------------------------
+
+  // kalkulasi form tunjangan-----------------------------------------------------
+  const tunjang = formtunjangan.getElementsByTagName('input')
+  let biltun = 0
+  for (let i = 0; i < tunjang.length; i++) {
+    if ([i]%2!=0) {
+      let cal = parseInt(tunjang[i].value)
+      biltun += cal
+    }
+  }
+  // end calculate----------------------------------------------------------------
+  var totalpot = document.getElementById('tpotongan')
+  var totaltun = document.getElementById('ttunjangan')
+  var gajikotor = parseInt(document.getElementById("gajikotor").value)
+  var tpotongan = parseInt(document.getElementById('tpotongan').value)
+  var ttunjangan = parseInt(document.getElementById('ttunjangan').value)
+  var gajibersih = document.getElementById('gjbersih')
+  var calpot = tpotongan + bilpot
+  totalpot.value = calpot
+  var caltun = ttunjangan + biltun
+  totaltun.value = caltun
+  console.log(calpot);
+  gajibersih.value = gajikotor - calpot + caltun
+  // console.log(gajibersih.value);
+}
+
+document.getElementById('gajikotor').onkeyup = function() {kalkulasi()}
+document.getElementById('tpotongan').onkeyup = function() {kalkulasi()}
+document.getElementById('ttunjangan').onkeyup = function() {kalkulasi()}
+document.getElementById('gjbersih').onkeyup = function() {kalkulasi()}
+formpotongan.getElementsByTagName('input').onkeyup = function() {kalkulasi()}
+formtunjangan.getElementsByTagName('input').onkeyup = function() {kalkulasi()}
+function kalkulasi() {
+  //kalkulasi form potongan-------------------------------------------------------
+  const potong = formpotongan.getElementsByTagName('input')
+  let bilpot = 0
+  for (let i = 0; i < potong.length; i++) {
+      if ([i]%2!=0) {
+        let cal = parseInt(potong[i].value)
+        bilpot += cal
+      }
+  }
+  // end calculate----------------------------------------------------------------
+
+  // kalkulasi form tunjangan-----------------------------------------------------
+  const tunjang = formtunjangan.getElementsByTagName('input')
+  let biltun = 0
+  for (let i = 0; i < tunjang.length; i++) {
+    if ([i]%2!=0) {
+      let cal = parseInt(tunjang[i].value)
+      biltun += cal
+    }
+  }
+  // end calculate----------------------------------------------------------------
+
+  var totalpot = document.getElementById('tpotongan')
+  var totaltun = document.getElementById('ttunjangan')
+  var gajikotor = parseInt(document.getElementById("gajikotor").value)
+  var tpotongan = parseInt(document.getElementById('tpotongan').value)
+  var ttunjangan = parseInt(document.getElementById('ttunjangan').value)
+  var gajibersih = document.getElementById('gjbersih')
+  var calpot = tpotongan + bilpot
+  totalpot.value = calpot
+  var caltun = ttunjangan + biltun
+  totaltun.value = caltun
+  console.log(calpot);
+  gajibersih.value = gajikotor - calpot + caltun
+  // console.log(gajibersih.value);
 }

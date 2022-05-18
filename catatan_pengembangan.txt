@@ -25,6 +25,9 @@
         - kj, namajabatan, besarangaji
     - edit jabatan
     - hapus jabatan
+
+
+# old architecture
 - menu penggajian
     - daftar gaji perbulan
         - tabel(no, tanggal, nama karyawan, jabatan, detail gaji, edit detail gaji)
@@ -34,3 +37,5 @@
             - masukkan gaji kotor berdasarkan jabatan
             - tambahkan potongan(dinamis)
             - 
+
+# new architecture
