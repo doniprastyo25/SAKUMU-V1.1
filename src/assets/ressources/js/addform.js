@@ -81,51 +81,9 @@ remove_fields1.onclick = function(){
   }
 
 // logic calculate
-var kal = document.getElementById('kalkulasi1')
-kal.onclick = function() {
-  //kalkulasi form potongan-------------------------------------------------------
-  const potong = formpotongan.getElementsByTagName('input')
-  let bilpot = 0
-  for (let i = 0; i < potong.length; i++) {
-      if ([i]%2!=0) {
-        let cal = parseInt(potong[i].value)
-        bilpot += cal
-      }
-  }
-  // end calculate----------------------------------------------------------------
+document.getElementById('kalkulasi1').onclick = function() {calculate(); this.onclick=null;}
 
-  // kalkulasi form tunjangan-----------------------------------------------------
-  const tunjang = formtunjangan.getElementsByTagName('input')
-  let biltun = 0
-  for (let i = 0; i < tunjang.length; i++) {
-    if ([i]%2!=0) {
-      let cal = parseInt(tunjang[i].value)
-      biltun += cal
-    }
-  }
-  // end calculate----------------------------------------------------------------
-  var totalpot = document.getElementById('tpotongan')
-  var totaltun = document.getElementById('ttunjangan')
-  var gajikotor = parseInt(document.getElementById("gajikotor").value)
-  var tpotongan = parseInt(document.getElementById('tpotongan').value)
-  var ttunjangan = parseInt(document.getElementById('ttunjangan').value)
-  var gajibersih = document.getElementById('gjbersih')
-  var calpot = tpotongan + bilpot
-  totalpot.value = calpot
-  var caltun = ttunjangan + biltun
-  totaltun.value = caltun
-  console.log(calpot);
-  gajibersih.value = gajikotor - calpot + caltun
-  // console.log(gajibersih.value);
-}
-
-document.getElementById('gajikotor').onkeyup = function() {kalkulasi()}
-document.getElementById('tpotongan').onkeyup = function() {kalkulasi()}
-document.getElementById('ttunjangan').onkeyup = function() {kalkulasi()}
-document.getElementById('gjbersih').onkeyup = function() {kalkulasi()}
-formpotongan.getElementsByTagName('input').onkeyup = function() {kalkulasi()}
-formtunjangan.getElementsByTagName('input').onkeyup = function() {kalkulasi()}
-function kalkulasi() {
+function calculate() {
   //kalkulasi form potongan-------------------------------------------------------
   const potong = formpotongan.getElementsByTagName('input')
   let bilpot = 0
@@ -160,5 +118,31 @@ function kalkulasi() {
   totaltun.value = caltun
   console.log(calpot);
   gajibersih.value = gajikotor - calpot + caltun
-  // console.log(gajibersih.value);
 }
+
+
+// format rupiah -------------------------------------------------------------------
+// var gjktr = document.getElementById('gajikotor')
+
+// if (gjktr.value.length > 0) {
+//   gjktr.value = (formatRupiah(gjktr.value));
+// }
+// gjktr.addEventListener('keyup', function(e) {
+//   gjktr.value = formatRupiah(this.value);
+// });
+
+// function formatRupiah(angka, prefix){
+//   var number_string = angka.replace(/[^,\d]/g, '').toString(),
+//       split    = number_string.split(','),
+//       sisa     = split[0].length % 3,
+//       rupiah     = split[0].substr(0, sisa),
+//       ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+      
+//   if (ribuan) {
+//       var separator = sisa ? '.' : '';
+//       rupiah += separator + ribuan.join('.');
+//   }
+  
+//   rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+//   return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+// }
