@@ -5,120 +5,144 @@
           <h5 class="m-0 p-0 text-white">Masukkan Data</h5>
         </div>
         <div class="modal-body text-start">
-            <div class="row">
-                <div class="col-sm-4">
-                <label>Tanggal</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="month" class="form-control form-control-sm" id="tanggal" name="tanggal" value="<%= filter %>" required>
-                </div>   
-            </div>
-            <div class="row mt-3">
-                <div class="col-sm-4">
-                <label>Nama karyawan</label>
-                </div>
-                <div class="col-sm-8">
-                    <select class="form-select form-select-sm" name="inpSDana" id="inpSDana" required > 
-                        <option value="">-masukkan nama karyawan-</option>
-                        <option value="surono">surono</option>
-                        <option value="purnomo">purnomo</option>
-                        <option value="wardoyo">wardoyo</option>
-                    </select>
-                </div>   
-            </div>
-            <div class="row mt-3">
-                <div class="col-sm-4">
-                <label>Gaji</label>
-                </div>
-                <div class="col-sm-8">
+            <form action="">
+                <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                        <label>Tanggal</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="month" class="form-control form-control-sm" id="tanggal" name="tanggal" value="<%= filter %>" required>
+                        </div>   
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-sm-4">
+                        <label>Nama karyawan</label>
+                        </div>
+                        <div class="col-sm-8">
                             <select class="form-select form-select-sm" name="inpSDana" id="inpSDana" required > 
-                                <option value="">-masukkan nama Jabatan-</option>
-                                <option value="kepaladesa">Kepala Desa</option>
-                                <option value="kasun">Kepala Dusun</option>
-                                <option value="sinom">Ketua Pemuda</option>
+                                <option value="">-masukkan nama karyawan-</option>
+                                <option value="surono">surono</option>
+                                <option value="purnomo">purnomo</option>
+                                <option value="wardoyo">wardoyo</option>
                             </select>
+                        </div>   
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-sm-4">
+                        <label>Gaji</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select class="form-select form-select-sm" name="inpSDana" id="inpSDana" required > 
+                                        <option value="">-masukkan nama Jabatan-</option>
+                                        <option value="kepaladesa">Kepala Desa</option>
+                                        <option value="kasun">Kepala Dusun</option>
+                                        <option value="sinom">Ketua Pemuda</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Rp" name="gajikotor" id="gajikotor" autocomplete="off" required >
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+                <div class="form-group">
+                    <hr>
+                    <p class="fw-bold fst-italic"><i class="bi bi-dash-circle-fill"></i> Potongan</p>
+                    <div class="row" id="formpotongan">
+                        <!-- <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="tambahakan potongan" name="npotongan" id="npotongan" autocomplete="off" required >
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control form-control-sm" placeholder="Rp" name="gajikotor" id="gajikotor" autocomplete="off" required >
+                            <input type="text" class="form-control form-control-sm" placeholder="Rp" name="jpotongan" id="jpotongan" autocomplete="off" required >
+                        </div> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="#" id="add_more_fields" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-plus"></i>tambah potongan</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="#" id="remove_fields" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-minus"></i>hapus potongan</a>
+                            </div>
                         </div>
                     </div>
-                </div>   
-            </div>
-            <hr>
-            <p class="fw-bold fst-italic"><i class="bi bi-dash-circle-fill"></i> Potongan</p>
-            <div class="row" id="formpotongan">
-                <!-- <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-sm" placeholder="tambahakan potongan" name="npotongan" id="npotongan" autocomplete="off" required >
                 </div>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-sm" placeholder="Rp" name="jpotongan" id="jpotongan" autocomplete="off" required >
-                </div> -->
-            </div>
-            <div class="controls">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="#" id="add_more_fields" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-plus"></i>tambah potongan</a>
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-sm-4">
+                        <label>Total Potongan</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control form-control-sm" placeholder="Rp" name="tpotongan" id="tpotongan" autocomplete="off" required value="0" disabled >
+                        </div>   
                     </div>
-                    <div class="col-sm-6">
-                        <a href="#" id="remove_fields" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-minus"></i>hapus potongan</a>
-                    </div>
+                    <hr>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-sm-4">
-                <label>Total Potongan</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" placeholder="Rp" name="tpotongan" id="tpotongan" autocomplete="off" required value="0" disabled >
-                </div>   
-            </div>
-            <hr>
-            <p class="fw-bold fst-italic"><i class="bi bi-plus-circle-fill"></i> Tunjangan</p>
-            <div class="row" id="formtunjangan">
-                <!-- <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-sm" placeholder="tambahakan tunjangan" name="ntunjangan" id="ntunjangan" autocomplete="off" required >
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-sm" placeholder="Rp" name="jtunjangan" id="jtunjangan" autocomplete="off" required >
-                </div> -->
-            </div>
-            <div class="controls">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="#" id="add_more_fields1" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-plus"></i>tambah tunjangan</a>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="#" id="remove_fields1" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-minus"></i>hapus tunjangan</a>
+                <div class="form-group">
+                    <p class="fw-bold fst-italic"><i class="bi bi-plus-circle-fill"></i> Tunjangan</p>
+                    <div class="row" id="formtunjangan">
+                        <!-- <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="tambahakan tunjangan" name="ntunjangan" id="ntunjangan" autocomplete="off" required >
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Rp" name="jtunjangan" id="jtunjangan" autocomplete="off" required >
+                        </div> -->
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-sm-4">
-                <label>Total Tunjangan</label>
+                <div class="form-group">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="#" id="add_more_fields1" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-plus"></i>tambah tunjangan</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="#" id="remove_fields1" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-minus"></i>hapus tunjangan</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" placeholder="Rp" name="ttunjangan" id="ttunjangan" autocomplete="off" required value="0" disabled >
-                </div>   
-            </div>
-            <hr>
-            <div class="row mt-3">
-                <div class="col-sm-4">
-                <label>Gaji Bersih</label>
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-sm-4">
+                        <label>Total Tunjangan</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control form-control-sm" placeholder="Rp" name="ttunjangan" id="ttunjangan" autocomplete="off" required value="0" disabled >
+                        </div>   
+                    </div>
                 </div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" placeholder="Rp"  name="gjbersih" id="gjbersih" autocomplete="off" required value="0" disabled >
-                </div>   
-            </div>
-            <div class="row">
-                <div class="col">
-                    <a href="#" id="kalkulasi1" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-plus"></i>kalkulasi</a>
+                <div class="form-group">
+                    <hr>
+                    <div class="row mt-3">
+                        <div class="col-sm-4">
+                        <label>Gaji Bersih</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control form-control-sm" placeholder="Rp"  name="gjbersih" id="gjbersih" autocomplete="off" required value="0" disabled >
+                        </div>   
+                    </div>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-info">Info</button>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" id="kalkulasi1" class="text-decoration-none fw-bold fst-italic"><i class="bi bi-shield-fill-plus"></i>kalkulasi</a>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-info">Info</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
 
         <div class="modal-footer">
