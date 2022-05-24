@@ -26,9 +26,20 @@ const getKaryawan = async function(callback) {
         console.log(error);
     }
     // end process
+}
 
+const getJabatan = async function(callback) {
+    let query = `SELECT kj,namajabatan,besarangaji
+                    FROM JABATAN`
+    try {
+        const jrows = db.prepare(query).all();
+        return callback({jrows})
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 module.exports = {
-    getKaryawan
+    getKaryawan,
+    getJabatan
 }

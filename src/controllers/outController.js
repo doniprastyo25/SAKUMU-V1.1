@@ -613,7 +613,7 @@ const getDelete = async (req,res) => {
 const getGuruKaryawan = async (req, res, next) =>{
     getmenu(function(listmenu) {
         outGaji.getKaryawan(function(dkaryawan) {
-            console.log(dkaryawan.krows);
+            // console.log(dkaryawan.krows);
             res.render('./pages/gj-datakaryawan',{
                 title: 'data karyawan',
                 page: 'gj',
@@ -630,13 +630,17 @@ const getGuruKaryawan = async (req, res, next) =>{
 
 const getJabatan = async (req, res) =>{
     getmenu(function(listmenu) {
-        res.render('./pages/gj-jabatan',{
-            title: 'data jabatan',
-            page: 'gj',
-            dess: 'List Jabatan',
-            menu: 'datajabatan',
-            layout: 'gaji-layout',
-            listmenu
+        outGaji.getJabatan(function(djabatan) {
+            console.log(djabatan.jrows);
+            res.render('./pages/gj-jabatan',{
+                title: 'data jabatan',
+                page: 'gj',
+                dess: 'List Jabatan',
+                menu: 'datajabatan',
+                layout: 'gaji-layout',
+                listmenu,
+                djabatan: djabatan.jrows
+            })
         })
     })
 }

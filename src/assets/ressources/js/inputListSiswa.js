@@ -18,6 +18,7 @@ async function getSiswa(kelas) {
     formSiswa.disabled = true;
 
     const url = '/siswa/'+kelas;
+    console.log(url);
     const response = await fetch(url, {
         method: 'GET'
     });
