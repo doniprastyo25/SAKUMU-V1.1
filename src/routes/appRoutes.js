@@ -20,6 +20,7 @@ router.get("/gj/datakaryawan", outController.getGuruKaryawan)
 router.get("/gj/jabatan", outController.getJabatan)
 router.get("/gj/penggajian", outController.getPenggajian)
 router.get("/gj/laporan", outController.getLaporan)
+router.post("/gj/addkaryawan", outController.postGuruKaryawan);
 // get kas bank
 router.get('/aruskas', mainControll.getArusKas);
 router.get('/aruskastanggal', mainControll.getArusKasTanggal);

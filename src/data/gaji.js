@@ -19,9 +19,12 @@ const getKaryawan = async function(callback) {
                     FROM DATAKARYAWAN d
                     INNER JOIN JABATAN j
                     ON d.kj = j.kj`
+    let query1 = `SELECT kj,namajabatan,besarangaji
+                    FROM JABATAN`
     try {
         const krows = db.prepare(query).all();
-        return callback({krows})
+        const jrows = db.prepare(query1).all();
+        return callback({krows, jrows})
     } catch (error) {
         console.log(error);
     }
@@ -39,7 +42,29 @@ const getJabatan = async function(callback) {
     }
 }
 
+const addGuruKaryawan = async function(id, nama, jabatan, callback) {
+    const cekid = `SELECT id FROM DATAKARYAWAN WHERE id=${id}`
+    const query = `INSERT INTO DATAKARYAWAN (id,kj,nama) VALUES ('${id}','${jabatan}','${nama}')`
+    const cek = db.prepare(cekid).all()
+    console.log(cek.length);
+    if (cek.length == 0) {
+        try {
+            const insert = db.prepare(query).run();
+            if (insert.changes > 0) {
+                callback({status: "ok"});
+                // console.log('input berhasil');
+            }
+        } catch (error) {
+            console.log('gagal');
+        }
+    }else{
+        callback({status:'no', msg:'id sudah ada'})
+        // console.log('input gagal');
+    }
+}
+
 module.exports = {
     getKaryawan,
-    getJabatan
+    getJabatan,
+    addGuruKaryawan
 }

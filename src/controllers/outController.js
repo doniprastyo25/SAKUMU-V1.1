@@ -610,10 +610,11 @@ const getDelete = async (req,res) => {
     return result;
 }
 
+// logic penggajian------------------------------------------------------
 const getGuruKaryawan = async (req, res, next) =>{
     getmenu(function(listmenu) {
         outGaji.getKaryawan(function(dkaryawan) {
-            // console.log(dkaryawan.krows);
+            // console.log(dkaryawan.jrows);
             res.render('./pages/gj-datakaryawan',{
                 title: 'data karyawan',
                 page: 'gj',
@@ -621,11 +622,28 @@ const getGuruKaryawan = async (req, res, next) =>{
                 menu: 'datakaryawan',
                 layout: 'gaji-layout',
                 listmenu,
-                karyawan: dkaryawan.krows
+                karyawan: dkaryawan.krows,
+                jabatan: dkaryawan.jrows
             })
         })
     })
     next()
+}
+
+const postGuruKaryawan = async (req, res, next) =>{
+    const id = req.body.inidkaryawan
+    const nama = req.body.innamakaryawan
+    const jabatan = req.body.injabatan
+    outGaji.addGuruKaryawan(id,nama,jabatan,function(data) {
+        // console.log(data.status);
+        if (data.status == 'ok') {
+            res.redirect("")
+        } else {
+            
+        }
+    })
+    // console.log(id, nama, jabatan);
+
 }
 
 const getJabatan = async (req, res) =>{
@@ -677,6 +695,7 @@ const getLaporan = async (req, res) =>{
         })
     })
 }
+// end logic--------------------------------------------------------------
 
 module.exports = {
     noMenu,
@@ -684,6 +703,7 @@ module.exports = {
     getJabatan,
     getPenggajian,
     getLaporan,
+    postGuruKaryawan,
     get,
     getAll,
     getTunggakan,
