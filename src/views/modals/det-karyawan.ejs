@@ -1,0 +1,37 @@
+<div class="modal fade" id="detKaryawan<%= data.id %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-info">
+            <h5 class="m-0 p-0 text-white">Detail Karyawan</h5>
+          </div>
+          <div class="modal-body text-start">
+              <form method="post" action="/gj/addkaryawan">
+                  <div class="container-fluid p-0">
+                      <div class="card bg-white p-3 mb-3">
+                          <div class="row">
+                              <div class="col-sm">
+                                  <label for="inpID" class="col-sm-2 col-form-label">id</label>
+                                  <input type="text" class="form-control form-control-sm" name="inidkaryawan" id="inidkaryawan" autocomplete="off" value="<%= data.id %>" disabled>
+                              </div>
+                              <div class="col-sm">
+                                  <label for="inpNama" class="col-sm-2 col-form-label">nama</label>
+                                  <input type="text" class="form-control form-control-sm" name="innamakaryawan" id="innamakaryawan" autocomplete="off" value="<%= data.nama %>" disabled>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm">
+                                  <label for="inpJabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                                  <input type="text" class="form-control form-control-sm" name="injabatan" id="injabatan" autocomplete="off" value="<%= data.jabatan %>" disabled>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+  
+          <div class="modal-footer">
+              
+          </div>        
+        </div>
+    </div>
+</div>

@@ -53,6 +53,12 @@
                 </div>
             </div>
             <!-- diisi alert -->
+            <% if(succ.length !== 0){%>
+                <div class="alert alert-success p-2 mt-2" role="alert"><%= succ %></div>
+            <% } %> 
+            <% if(err.length !== 0){%>
+                <div class="alert alert-danger p-2 mt-2" role="alert"><%= err %></div>
+            <% } %> 
             <table class="table table-sm table-bordered table-striped mt-3">
                 <thead>
                     <tr>
@@ -65,13 +71,20 @@
                 <tbody> 
                     <% for( let i = 0; i < karyawan.length; i++ ) { %>
                         <tr>
+                            <!-- <th class="text-center" scope="row"><%= karyawan[i].id %> </th> -->
                             <th class="text-center" scope="row"><%= i + 1 %> </th>
                             <td><%= karyawan[i].nama %> </td>
                             <td><%= karyawan[i].jabatan %> </td>
                             <td class="text-center">
-                                <button type="button" class="btn badge btn-success fw-normal me-1" data-bs-toggle="modal" data-bs-target="#outDetail"><i class="bi bi-info-circle"></i></button>
-                                <a href="#" class="btn badge btn-primary fw-normal"><i class="bi bi-pencil-square"></i></a>
-                                <a href="#" class="btn badge btn-primary fw-normal"><i class="bi bi-printer-fill me-2"></i></a> 
+                                <button type="button" class="btn badge btn-success fw-normal me-1" data-bs-toggle="modal" data-bs-target="#detKaryawan<%= karyawan[i].id %>"><i class="bi bi-info-circle"></i></button>
+                                <%- include('../modals/det-karyawan',{
+                                    data: karyawan[i],
+                                }) %> 
+                                <button type="button" class="btn badge btn-primary fw-normal" data-bs-toggle="modal" data-bs-target="#editKaryawan<%= karyawan[i].id %>"><i class="bi bi-pencil-square"></i></button>
+                                <%- include('../modals/edit-karyawan',{
+                                    data: karyawan[i],
+                                }) %> 
+                                <a href="#" class="btn badge btn-danger fw-normal"><i class="bi bi-trash"></i></a> 
                             </td>
                         </tr>             
                     <% } %>

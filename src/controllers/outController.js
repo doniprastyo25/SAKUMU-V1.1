@@ -623,7 +623,9 @@ const getGuruKaryawan = async (req, res, next) =>{
                 layout: 'gaji-layout',
                 listmenu,
                 karyawan: dkaryawan.krows,
-                jabatan: dkaryawan.jrows
+                jabatan: dkaryawan.jrows,
+                succ: req.flash('success'),
+                err: req.flash('error')
             })
         })
     })
@@ -637,9 +639,11 @@ const postGuruKaryawan = async (req, res, next) =>{
     outGaji.addGuruKaryawan(id,nama,jabatan,function(data) {
         // console.log(data.status);
         if (data.status == 'ok') {
-            res.redirect("")
+            req.flash('success','Karyawan Berhasil Ditambahkan');
+            res.redirect("/gj/datakaryawan")
         } else {
-            
+            req.flash('error','ID Sudah ada');
+            res.redirect("/gj/datakaryawan")
         }
     })
     // console.log(id, nama, jabatan);
