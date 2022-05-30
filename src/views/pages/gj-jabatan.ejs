@@ -65,13 +65,23 @@
                 <tbody>
                     <% for( let i = 0; i < djabatan.length; i++ ) { %>
                         <tr>
+                            <!-- <th class="text-center" scope="row"><%= djabatan[i].kj  %></th> -->
                             <th class="text-center" scope="row"><%= i + 1  %> </th>
                             <td><%= djabatan[i].namajabatan %> </td>
                             <td><%= djabatan[i].besarangaji %> </td>
                             <td class="text-center">
-                                <button type="button" class="btn badge btn-success fw-normal me-1" data-bs-toggle="modal" data-bs-target="#outDetail"><i class="bi bi-info-circle"></i></button>
-                                <a href="#" class="btn badge btn-primary fw-normal"><i class="bi bi-pencil-square"></i></a>
-                                <a href="#" class="btn badge btn-primary fw-normal"><i class="bi bi-printer-fill me-2"></i></a> 
+                                <button type="button" class="btn badge btn-success fw-normal me-1" data-bs-toggle="modal" data-bs-target="#detJabatan<%= djabatan[i].kj %>"><i class="bi bi-info-circle"></i></button>
+                                <%- include('../modals/det-jabatan' ,{
+                                    data: djabatan[i],
+                                }) %>
+                                <button type="button" class="btn badge btn-primary fw-normal" data-bs-toggle="modal" data-bs-target="#editJabatan<%= djabatan[i].kj %>"><i class="bi bi-pencil-square"></i></button>
+                                <%- include('../modals/edit-jabatan',{
+                                    data: djabatan[i],
+                                }) %> 
+                                <button type="button" class="btn badge btn-danger fw-normal" data-bs-toggle="modal" data-bs-target="#delJabatan<%= djabatan[i].kj %> "><i class="bi bi-trash"></i></button>
+                                <%- include('../modals/del-jabatan',{
+                                    data: djabatan[i],
+                                }) %>
                             </td>
                         </tr>             
                     <% } %>

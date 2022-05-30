@@ -1,0 +1,19 @@
+<div class="modal fade" id="delJabatan<%= data.kj %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger">
+          <h5 class="m-0 p-0 text-white">Hapus Karyyawan</h5>
+        </div>
+        <div class="modal-body text-start">
+          <p>Apakah anda yakin ingin menghapus "<%= data.namajabatan %>" ?</p>
+          <p>menghapus "<%= data.namajabatan %>" akan menghapus seluruh karyawan dengan jabatan tersebut</p>
+        </div>
+        <div class="modal-footer">          
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+            <form action="/settings/delKaryawan?idkaryawan=<%= data.kj %>" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">Ya Hapus</button>
+            </form>
+        </div>        
+      </div>
+    </div>
+</div>

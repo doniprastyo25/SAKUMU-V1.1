@@ -84,7 +84,10 @@
                                 <%- include('../modals/edit-karyawan',{
                                     data: karyawan[i],
                                 }) %> 
-                                <a href="#" class="btn badge btn-danger fw-normal"><i class="bi bi-trash"></i></a> 
+                                <button type="button" class="btn badge btn-danger fw-normal" data-bs-toggle="modal" data-bs-target="#delKaryawan<%= karyawan[i].id %> "><i class="bi bi-trash"></i></button>
+                                <%- include('../modals/del-karyawan',{
+                                    data: karyawan[i],
+                                }) %> 
                             </td>
                         </tr>             
                     <% } %>
