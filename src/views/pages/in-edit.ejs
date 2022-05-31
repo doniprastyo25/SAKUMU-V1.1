@@ -48,7 +48,7 @@
             <h6 class="text-start fw-normal">Kas</h6>
             <input type="hidden" id="getKas" name="getKas" value="<%= data.kas %>">
             <div class="input-group input-group-sm mb-3">
-                <select class="form-select" name="inpKas" id="inpKas" required value="<%= data.kas %>">
+                <select class="form-select" name="inpKas" id="inpKas" required>
                         <option value="<%= data.kas %>"><%= data.nama%></option>
                     <% for (let i = 0; i < dkas.length; i++) { %>
                         <option value="<%= dkas[i].idkas %>"><%= dkas[i].nkas %></option>        

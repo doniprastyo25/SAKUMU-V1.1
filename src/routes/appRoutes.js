@@ -21,6 +21,7 @@ router.get("/gj/jabatan", outController.getJabatan)
 router.get("/gj/penggajian", outController.getPenggajian)
 router.get("/gj/laporan", outController.getLaporan)
 router.post("/gj/addkaryawan", outController.postGuruKaryawan);
+router.post("/gj/editkaryawan", outController.updateKaryawan)
 // get kas bank
 router.get('/aruskas', mainControll.getArusKas);
 router.get('/aruskastanggal', mainControll.getArusKasTanggal);

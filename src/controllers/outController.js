@@ -636,6 +636,7 @@ const postGuruKaryawan = async (req, res, next) =>{
     const id = req.body.inidkaryawan
     const nama = req.body.innamakaryawan
     const jabatan = req.body.injabatan
+    console.log(id, nama, jabatan);
     outGaji.addGuruKaryawan(id,nama,jabatan,function(data) {
         // console.log(data.status);
         if (data.status == 'ok') {
@@ -647,6 +648,17 @@ const postGuruKaryawan = async (req, res, next) =>{
         }
     })
     // console.log(id, nama, jabatan);
+
+}
+
+const updateKaryawan = async (req, res, next) =>{
+    const id = req.body.inidkaryawan
+    const nama = req.body.innamakaryawan
+    const jabatan = req.body.injabatan
+    console.log(id, nama, jabatan);
+    outGaji.updateKaryawan(id,nama,jabatan,function(data) {
+        console.log(data);
+    })
 
 }
 
@@ -705,6 +717,7 @@ module.exports = {
     noMenu,
     getGuruKaryawan,
     getJabatan,
+    updateKaryawan,
     getPenggajian,
     getLaporan,
     postGuruKaryawan,

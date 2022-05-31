@@ -15,7 +15,7 @@ const getKaryawan = async function(callback) {
     //end process---------------------------------------------------------------------- 
     
     // process ambil data karyawan
-    let query = `SELECT id,nama,namajabatan as jabatan
+    let query = `SELECT id,d.kj,nama,namajabatan as jabatan
                     FROM DATAKARYAWAN d
                     INNER JOIN JABATAN j
                     ON d.kj = j.kj`
@@ -24,6 +24,7 @@ const getKaryawan = async function(callback) {
     try {
         const krows = db.prepare(query).all();
         const jrows = db.prepare(query1).all();
+        // console.log(krows);
         return callback({krows, jrows})
     } catch (error) {
         console.log(error);
@@ -63,8 +64,26 @@ const addGuruKaryawan = async function(id, nama, jabatan, callback) {
     }
 }
 
+const updateKaryawan = async function(id, nama, jabatan, callback){
+    // console.log(id, nama, jabatan);
+    let queryupdate = `UPDATE DATAKARYAWAN SET kj="${jabatan}",nama="${nama}" WHERE id='${id}'`
+    try {
+        const krows = db.prepare(queryupdate).run();
+        if (krows.changes > 0) {
+            console.log('- data berhasil diperbaharui');
+            return callback({status:'ok'})
+        }else{
+            return callback({status:'no'})
+        }
+    } catch (error) {
+        // console.log(error);
+    }
+
+}
+
 module.exports = {
     getKaryawan,
     getJabatan,
-    addGuruKaryawan
+    addGuruKaryawan,
+    updateKaryawan
 }
