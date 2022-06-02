@@ -516,7 +516,14 @@ const cetakDetail = async (req, res, next) => {
 
 //get function from inNew.js(addData) -> /pages/in-tambah
 const addNew = async (req,res) => {
-    const no = req.params.no
+    let tanggal = ""
+    const no = req.params.no;
+    const tgl = new Date();
+    tanggal = date.format(tgl, 'YYYYMMDD');
+    const getTahun = tanggal.substring(0,4)
+    const getBulan = tanggal.substring(4,6)
+    const getHari = tanggal.substring(6,8)
+    const nowdate = getTahun+"-"+getBulan+"-"+getHari
     await inNew.addData(function(data) {
         if (data.status === "ok") {
             getmenu(function(listmenu) {
@@ -532,7 +539,8 @@ const addNew = async (req,res) => {
                         sub: no,
                         kas:data.kas,
                         listmenu,
-                        sd:data.sd                        
+                        sd:data.sd,
+                        nowdate: nowdate                        
                     });                        
                 }else if (dbs == 1) {
                     res.render('./pages/in-tambah-dbs',{
@@ -546,7 +554,8 @@ const addNew = async (req,res) => {
                         kas:data.kas,
                         sd:data.sd,
                         kelas:data.kls,
-                        err: req.flash('err')
+                        err: req.flash('err'),
+                        nowdate: nowdate 
                     })
                 }
             });
@@ -562,8 +571,14 @@ const newSubmit = async (req,res) => {
     const jumlah = req.body.inpJumlah;
     const dana = req.body.inpSDana;
     const kas = req.body.inpKas;
+    const tgl = req.body.date;
+    const now = new Date();
+    const jam = date.format(now, 'HHmmss')
+    const sortirtgl = replaceAll("-","", tgl)
+    const tglfix = sortirtgl+jam
+    console.log(tglfix);
     if (typeof uraian !== "undefined") {
-        const result = await inNew.submitNew(no,uraian,satuan,jumlah,dana,kas, function(data) {
+        const result = await inNew.submitNew(no,tglfix,uraian,satuan,jumlah,dana,kas, function(data) {
             if(data['status'] === 'ok'){
                 var total = parseInt(satuan)*parseInt(jumlah);
                 req.flash('msg','Data '+uraian+' sebesar '+rupiah.convert(total)+' berhasil ditambahkan!')

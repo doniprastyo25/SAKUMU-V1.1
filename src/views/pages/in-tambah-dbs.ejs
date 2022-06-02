@@ -14,7 +14,13 @@
             <div class="alert alert-danger" role="alert"><%= err %></div>
         <% } %>  
         <h6 class="mb-3"><%= subtitle %> </h6>
-        <div class="card bg-white p-3 mb-3">             
+        <div class="card bg-white p-3 mb-3"> 
+            <div class="row">
+                <label for="inpTanggal" class="col-sm-2 col-form-label">Tanggal</label>
+                <div class="col-sm">
+                    <input type="date" class="form-control form-control-sm" id="date" name="date" value="<%= nowdate %>" required>
+                </div>
+            </div>            
             <div class="row">
                 <label for="inpKelas" class="col-sm-2 col-form-label">Pilih Kelas</label>
                 <div class="col-sm">
