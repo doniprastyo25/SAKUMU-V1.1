@@ -79,7 +79,7 @@ const tunggakan = async function(no,month, callback) {
         let nis_bayar = []
         for (let i = 0; i < list_bayar.length; i++) {
             const uraian = list_bayar[i].uraian;
-            const get_nis = uraian.split(' | ')[0]
+            const get_nis = uraian.split(',')[0]
             nis_bayar.push(get_nis);
         }
 

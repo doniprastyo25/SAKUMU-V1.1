@@ -490,7 +490,14 @@ const cetakDetail = async (req, res, next) => {
 }
 
 const addNew = async (req, res) => {
+    let tanggal = ""
     const no = req.params.no;
+    const tgl = new Date();
+    tanggal = date.format(tgl, 'YYYYMMDD');
+    const getTahun = tanggal.substring(0,4)
+    const getBulan = tanggal.substring(4,6)
+    const getHari = tanggal.substring(6,8)
+    const nowdate = getTahun+"-"+getBulan+"-"+getHari
     await outNew.addData(function(data) {
         if (data.status === "ok") {
             getmenu(function(listmenu) {
@@ -506,7 +513,8 @@ const addNew = async (req, res) => {
                         sub: no,
                         listmenu,
                         kas:data.kas,
-                        sd:data.sd
+                        sd:data.sd,
+                        nowdate: nowdate
                     });
                 }else if (dbs == 1) {
                     res.render('./pages/out-tambah-dbs',{
@@ -520,7 +528,8 @@ const addNew = async (req, res) => {
                         kas:data.kas,
                         sd:data.sd,
                         kelas:data.kls,
-                        err: req.flash('err')
+                        err: req.flash('err'),
+                        nowdate: nowdate
                     })
                 }
             })
@@ -537,8 +546,13 @@ const getNewsubmit = async (req,res) => {
     const jumlah = req.body.inpJumlah;
     const dana = req.body.inpSDana;
     const kas = req.body.inpKas;
+    const tgl = req.body.date;
+    const now = new Date();
+    const jam = date.format(now, 'HHmmss')
+    const sortirtgl = replaceAll("-","", tgl)
+    const tglfix = sortirtgl+jam
     if (typeof uraian !== "undefined") {
-        const result = await outNew.addNew(no,uraian,satuan,jumlah,dana,kas, function(data) {
+        const result = await outNew.addNew(no,tglfix,uraian,satuan,jumlah,dana,kas, function(data) {
             if(data['status'] === 'ok'){
                 res.redirect(301,'/pengeluaran/'+no);
             }

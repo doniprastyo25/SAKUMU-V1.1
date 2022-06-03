@@ -16,11 +16,12 @@ const addData = async function (callback) {
     }
 }
 
-const addNew = async function(no,uraian,satuan,jumlah,dana,kas, callback){
+const addNew = async function(no,tglfix,uraian,satuan,jumlah,dana,kas, callback){
     const total = parseInt(satuan)*jumlah;
     const now = new Date();
-    const timestamp = date.format(now, 'YYYYMMDDHHmmss');
-
+    // const timestamp = date.format(now, 'YYYYMMDDHHmmss');
+    const timestamp = tglfix;
+    
     let getNomax = "SELECT max(no) as no FROM PENGELUARAN WHERE kd="+no;
     let nomor = 1;
     try {
