@@ -10,6 +10,7 @@ const replaceAll = require('replaceall');
 const menu = require('../data/getMenu');
 const date = require('date-and-time');
 const path = require('path');
+const open = require('open');
 
 // getmenu is dinamic sidebar loaded every menu in each function
 async function getmenu(callback) {
@@ -367,6 +368,7 @@ const cetakAll = async (req, res, next) => {
 const cetakDetail = async (req, res, next) => {
     const no = req.params.no
     const id = req.query.id
+    const name = req.query.uraian
     // const kd = req.query.kd
     let setDate = ""
     const now = new Date();
@@ -382,7 +384,7 @@ const cetakDetail = async (req, res, next) => {
     let dog = new PDFkitDoc(); 
     let doc = new PDFDocument({ margin:20,startY:100, size: 'A5', layout:'landscape'});
     // file name
-    doc.pipe(fs.createWriteStream(`./laporan/kwitansi/pengeluaran/kwitansi ${tgl}.pdf`));
+    doc.pipe(fs.createWriteStream(`./laporan/kwitansi/pengeluaran/${name} ${tgl}.pdf`));
     await outData.cetakKwitansi(no, id, function (data) {
         const time = data.field.timestamp;
         let str = time.toString();
@@ -486,6 +488,7 @@ const cetakDetail = async (req, res, next) => {
             req.flash('kwitansierror', data.msg);
         }
     })
+    open(path.resolve(__dirname, `../../laporan/kwitansi/pengeluaran/${name} ${tgl}.pdf`))
     next();
 }
 

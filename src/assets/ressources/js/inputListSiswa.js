@@ -31,7 +31,7 @@ async function getSiswa(kelas) {
             formSiswa.disabled = false;
             
             for (let i = 0; i < array.length; i++) {
-                options += '<option value="' + array[i].nis +","+array[i].nama +",Kelas:"+array[i].kelas +  '" />';
+                options += '<option value="' + array[i].nis +","+array[i].nama +",Kelas "+array[i].kelas +  '" />';
             }
         }
     }

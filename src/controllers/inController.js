@@ -656,6 +656,7 @@ const getDelete = async (req,res) => {
 
 const printkwitansi = async (req, res) =>{
     const data = req.query.file;
+    console.log(data);
     const id = req.params.no;
     const buka = open(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
     // const file = fs.readFileSync(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
