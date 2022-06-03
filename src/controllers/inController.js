@@ -596,7 +596,13 @@ const edit = async (req,res) => {
     const no = req.params.no
     const id = req.query.id
     const result = await inData.getEdit(no,id,function(data) {
-
+        console.log(data.field.timestamp);
+        const tgl = data.field.timestamp
+        const btgl = tgl.toString()
+        const getTahun = btgl.substring(0,4)
+        const getBulan = btgl.substring(4,6)
+        const getHari = btgl.substring(6,8)
+        const tanggalan = getTahun+"-"+getBulan+"-"+getHari
         inData.getBank(function (kdata) {
             let listkas = [];
               for (let i = 0; i < kdata.qrows.length; i++) {
@@ -618,7 +624,8 @@ const edit = async (req,res) => {
                       data: data.field,
                       dkas: listkas,
                       listmenu,
-                      sd:data.sd
+                      sd:data.sd,
+                      tanggalan
                   });
               })
         });
@@ -635,7 +642,12 @@ const update = async (req, res) => {
     const jumlah = req.body.inpJumlah;
     const dana = req.body.inpSDana;
     const kas = req.body.inpKas;
-    const result = await inNew.updateData(no,id,uraian,satuan,jumlah,dana,kas, function(data) {
+    const tgl = req.body.date;
+    const now = new Date();
+    const jam = date.format(now, 'HHmmss');
+    const sortirtgl = replaceAll("-","",tgl);
+    const tglfix = sortirtgl+jam
+    const result = await inNew.updateData(no,id,tglfix,uraian,satuan,jumlah,dana,kas, function(data) {
         if(data['status'] === 'ok'){
             res.redirect(301,'/penerimaan/'+no);
         }

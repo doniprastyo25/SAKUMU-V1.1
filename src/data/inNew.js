@@ -46,9 +46,9 @@ const submitNew = async function(no,tglfix,uraian,satuan,jumlah,dana,kas, callba
     }
 }
 
-const updateData = async function(no,id,uraian,satuan,jumlah,dana,kas, callback) {
+const updateData = async function(no,id,tglfix,uraian,satuan,jumlah,dana,kas, callback) {
     const total = parseInt(satuan)*jumlah;
-    const query = "UPDATE PENERIMAAN SET uraian='"+uraian+"', satuan="+satuan+", jumlah="+jumlah+", total="+total+", sumber='"+dana+"', kas='"+kas+"' WHERE kd="+no+" and timestamp="+id;
+    const query = "UPDATE PENERIMAAN SET uraian='"+uraian+"', timestamp='"+tglfix+"', satuan="+satuan+", jumlah="+jumlah+", total="+total+", sumber='"+dana+"', kas='"+kas+"' WHERE kd="+no+" and timestamp="+id;
     //console.log(query);
     try {
         const pre = db.prepare(query);
