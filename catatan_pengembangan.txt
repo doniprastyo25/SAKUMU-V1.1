@@ -32,10 +32,10 @@
     - /API/settings/menu(GET)(done)
     - /API/settings/kas(GET)(done)
     - /API/settings/sumberdana(done)
-    - /API/setting/siswa
-    - /API/setting/editKelas(done)
+    - /API/setting/siswa(POST)
+    - /API/setting/editKelas(GET)(done)
     - aruskas/API
-    - /API/aruskas/
+    - /API/aruskas/(done)
     # penerimaan(tampilkan, tambahkan, edit, hapus, cetakKwitansi)
     - /API/penerimaan/tampilkan
     - /API/penerimaan/tambahkan

@@ -6,7 +6,8 @@ const multer = require('multer');
 //controllers
 const mainControll = require('../controllers/mainController');
 const appControll = require('../controllers/appController');
-const outController = require('../controllers/outController')
+const outController = require('../controllers/outController');
+const apicontroller = require('../controllers/apicontroller');
 
 //GET
 router.get('/', mainControll.getRoot);
@@ -69,6 +70,8 @@ router.get('/API/settings/menu', appControll.getSetMenuAPI);
 router.get('/API/settings/kas', appControll.getSetKasApi);
 // router.get('/API/settings/sumberdana', appControll.getSetDanaAPI);
 router.get('/API/settings/editkelas', appControll.getSetKelasApi);
+router.get('/API/aruskas', apicontroller.getKasApi);
+router.get('/API/penerimaan/:no', apicontroller.APIgetpenerimaan);
 
 
 //----------------------------------------------------------------------------------------------------------------//
