@@ -150,5 +150,5 @@ module.exports = {
     delSumberDana,
     addKas,
     editKas,
-    delKas
+    delKas,
 }

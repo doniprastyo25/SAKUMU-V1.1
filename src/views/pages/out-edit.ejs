@@ -15,7 +15,11 @@
         </div>
         <hr>
         <h6 class="mb-3"><%= subtitle %> </h6>
-        <div class="card bg-white p-3 mb-3">                                
+        <div class="card bg-white p-3 mb-3">
+            <h6 class="text-start fw-normal">Tanggal</h6>
+            <div class="col-sm">
+                <input type="date" class="form-control form-control-sm" id="date" name="date" value="<%= tanggalan %>" required>
+            </div>                                  
             <h6 class="text-start fw-normal">Uraian</h6>
             <div class="input-group input-group-sm mb-3">
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="inpUraian" id="inpUraian" required value="<%= data.uraian %>">

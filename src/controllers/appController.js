@@ -196,16 +196,6 @@ const getSetSiswa = async (req, res) => {
         await Promise.resolve(cek).then(result => {
             if (result == true) {
                 return appSiswa.getKelas(function(data) {
-                    appSiswa.getAllSiswa(function(rows) {
-                       let allsiswa = [];
-                            for (let i = 0; i < rows.data.length; i++) {
-                                allsiswa.push({
-                                    noinduk: rows.data[i].nis,
-                                    namasiswa: rows.data[i].nama,
-                                    kelassiswa: rows.data[i].kelas
-                                })
-                            }
-                            // console.log(allsiswa);
                         getmenu(function(listmenu) {
                             res.render('./pages/set-siswa', {
                                 title: 'Pengaturan Data Siswa',
@@ -213,11 +203,9 @@ const getSetSiswa = async (req, res) => {
                                 menu: 'siswa',
                                 layout: 'settings-layout',
                                 listmenu,
-                                data,
-                                rows : allsiswa
+                                data
                             });
                         });
-                    })
                 });
             }else{
                 res.redirect('/logout');
@@ -745,6 +733,41 @@ const restoreDB = async function(req,res, next) {
 //     // const file = fs.readFileSync(path.resolve(__dirname, `../../laporan/kwitansi/penerimaan/${data}`))
 //     res.redirect('./penerimaan/')
 // }
+const getSetMenuAPI = async (req, res) => {
+    try {
+        await menu.getMenu(function(data) {
+            const inmenu = data.filter(item => item.kd === 1)
+            const outmenu = data.filter(item => item.kd === 2)
+
+            res.send({status:200, msg:'ok', inmenu:inmenu, outmenu:outmenu})
+        })
+    } catch (error) {
+        res.send({status:500, msg:'error'}) 
+    }
+}
+
+const getSetKasApi = async (req, res) =>{
+    try {
+        await appKas.getSumberDana(function(data) {
+
+            if (data.status === 'ok') {
+                res.send({status:200, msg:'ok', sd: data.sumberdana, kas: data.kas})
+            }
+        })
+    } catch (error) {
+        res.send({status:500, msg:'error'})
+    }
+}
+
+const getSetKelasApi = async (req, res) =>{
+    try {
+        await appSiswa.getKelas(function(data) {
+                res.send({status:200, msg:'ok', kelas: data})
+        })
+    } catch (error) {
+        res.send({status:500, msg:'error'})
+    }
+}
 
 
 
@@ -779,5 +802,8 @@ module.exports = {
     restoreDB,
     uploadlogo,
     postProfile,
+    getSetMenuAPI,
+    getSetKasApi,
+    getSetKelasApi
     // printkwitansi
 }

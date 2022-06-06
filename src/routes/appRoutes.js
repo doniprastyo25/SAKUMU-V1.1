@@ -25,7 +25,6 @@ router.post("/gj/editkaryawan", outController.updateKaryawan)
 // get kas bank
 router.get('/aruskas', mainControll.getArusKas);
 router.get('/aruskastanggal', mainControll.getArusKasTanggal);
-router.get('/aruskas/API', mainControll.getlaporanjson);
 router.get('/cekSinkronisasi', mainControll.cekSinkron);
 router.get('/cetaklaporan', mainControll.cetakLaporan);
 router.get('/cetakkwitansi', mainControll.getCetakKwitansi);
@@ -63,6 +62,14 @@ router.post('/settings/profile', appControll.postProfile);
 router.get('/siswa/:kelas', appControll.getListSiswa);
 // router.get('/printkwitansi', appControll.printkwitansi)
 // router.post('/settings/backupdb', appControll.backup);
+
+// API
+router.get('/aruskas/API', mainControll.getlaporanjson);
+router.get('/API/settings/menu', appControll.getSetMenuAPI);
+router.get('/API/settings/kas', appControll.getSetKasApi);
+// router.get('/API/settings/sumberdana', appControll.getSetDanaAPI);
+router.get('/API/settings/editkelas', appControll.getSetKelasApi);
+
 
 //----------------------------------------------------------------------------------------------------------------//
 //multer setting
