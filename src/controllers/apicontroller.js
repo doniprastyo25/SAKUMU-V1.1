@@ -170,8 +170,66 @@ const APIgetpenerimaanall = async (req, res) =>{
     }
 }
 
-const APIsearch = async (req, res) =>{
+const APIinsearch = async (req, res) =>{
+    const no = req.params.no;
+    const keyword = req.body.search;
+    console.log(keyword);
+    if (keyword) {
+        res.redirect(`/API/penerimaan/${no}/search?keyword=${keyword}`)
+    }else{
+        res.redirect(`/API/penerimaan/${no}`)
 
+    }
+}
+
+const APIGetSearch = async (req, res) => {
+    const no = req.params.no;
+    const keyword = req.query.keyword;
+    await inData.searchFilter(no, keyword, function(data) {
+        let listdata = [];
+        for(let i=0;i<data.length;i++){
+            let time = data[i].timestamp;
+            let str = time.toString();
+            let year = str.substring(0,4);
+            let month = str.substring(4,6);
+            let day = str.substring(6,8);
+            let tanggal = day+"/"+month+"/"+year;
+            listdata.push({
+                kd: data[i].kd,
+                no: data[i].no,
+                timestamp: data[i].timestamp,
+                tanggal: tanggal,
+                uraian: data[i].uraian,
+                satuan: data[i].satuan,
+                satuanrp: rupiah.convert(data[i].satuan),
+                jumlah: data[i].jumlah,
+                total: data[i].total,
+                totalrp: rupiah.convert(data[i].total),
+                sumber: data[i].sumber,
+                kas: data[i].kas
+            })
+        }
+        inData.getBank(function(kdata) {
+            let listkas = [];
+                for (let i = 0; i < kdata.qrows.length; i++) {
+                    listkas.push({
+                        idkas: kdata.qrows[i].id,
+                        nkas: kdata.qrows[i].nama,
+                        ckas: kdata.qrows[i].color
+                    })                    
+                }
+                getmenu(function(listmenu) {
+                    const getsub = listmenu.in.filter(item => item.sub === parseInt(no));
+                    const dbs = getsub[0].dbsiswa;
+                    res.send({
+                        data: listdata,
+                        dkas: listkas,
+                        listmenu,
+                        dbs,
+                    });
+                })
+        })
+    })
 }
 
 // to render menu
@@ -192,5 +250,6 @@ module.exports ={
     getmenu,
     APIgetpenerimaan,
     APIgetpenerimaanall,
-    APIsearch
+    APIinsearch,
+    APIGetSearch
 }

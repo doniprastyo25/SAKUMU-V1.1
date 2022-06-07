@@ -37,12 +37,13 @@
     - aruskas/API
     - /API/aruskas/(done)
     # penerimaan(tampilkan, tambahkan, edit, hapus, cetakKwitansi)
-    - /API/penerimaan/tampilkan(done)
+    - /API/penerimaan/tampilkan(POST)(done)
     - /API/penerimaan/tambahkan
     - /API/penerimaan/edit
     - /API/penerimaan/hapus
     - /API/penerimaan/cetakKwitansi
-    - /API/search
+    - /API/peneriamaan/:no(POST)
+    - /API/penerimaan/:no/searc(POST)(done)
     # pengeluaran(tampilkan, tambahkan, edit, hapus, cetakKwitansi)
     - /API/pengeluaran/tampilkan
     - /API/pengeluaran/tambahkan

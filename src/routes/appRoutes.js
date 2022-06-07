@@ -74,8 +74,9 @@ router.get('/API/settings/editkelas', appControll.getSetKelasApi);
 router.get('/API/aruskas', apicontroller.getKasApi);
 router.get('/API/penerimaan/:no', apicontroller.APIgetpenerimaan);
 router.get('/API/penerimaan/all/:no', apicontroller.APIgetpenerimaanall);
+router.get('/API/penerimaan/:no/search', apicontroller.APIGetSearch)
 // post
-router.post('/API/penerimaan/:no', apicontroller.APIsearch);
+router.post('/API/penerimaan/:no', apicontroller.APIinsearch);
 
 
 //----------------------------------------------------------------------------------------------------------------//
