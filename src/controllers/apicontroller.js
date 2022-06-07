@@ -56,6 +56,22 @@ const getKasApi = async(req, res) => {
     }
 }
 
+const APIInNoMenu = async(req, res) => {
+    getmenu(function(listmenu) {
+        const getsub = listmenu.in
+        console.log(getsub.length);
+        if (getsub.length == 0) {
+            res.send({
+                msg: 'no menu'
+            })
+        }else{
+            res.send({
+                getsub
+            })
+        }
+    })
+}
+
 const APIgetpenerimaan = async (req, res) =>{
     try {
         const no = req.params.no;
@@ -251,5 +267,6 @@ module.exports ={
     APIgetpenerimaan,
     APIgetpenerimaanall,
     APIinsearch,
-    APIGetSearch
+    APIGetSearch,
+    APIInNoMenu
 }
