@@ -32,7 +32,7 @@ const get = async (req,res) => {
     const folderPath = './laporan/kwitansi/penerimaan'
     const no = req.params.no;
     const getdate = req.query.date;
-    // console.log(getdate);
+    console.log(getdate);
     await inData.getData(no,getdate,function(data) {
         let listdata = [];
         for(let i=0;i<data.rows.length;i++){
@@ -136,7 +136,7 @@ const getAll = async (req, res) => {
                 ckas: kdata.qrows[i].color
               });        
             }
-            console.log(listkas);
+            // console.log(listkas);
             const file = fs.readdirSync(folderPath);
             getmenu(function(listmenu) {
               const getsub = listmenu.in.filter(item => item.sub === parseInt(no));

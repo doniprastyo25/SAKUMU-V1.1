@@ -65,6 +65,7 @@ router.get('/siswa/:kelas', appControll.getListSiswa);
 // router.post('/settings/backupdb', appControll.backup);
 
 // API
+// get
 router.get('/aruskas/API', mainControll.getlaporanjson);
 router.get('/API/settings/menu', appControll.getSetMenuAPI);
 router.get('/API/settings/kas', appControll.getSetKasApi);
@@ -72,6 +73,9 @@ router.get('/API/settings/kas', appControll.getSetKasApi);
 router.get('/API/settings/editkelas', appControll.getSetKelasApi);
 router.get('/API/aruskas', apicontroller.getKasApi);
 router.get('/API/penerimaan/:no', apicontroller.APIgetpenerimaan);
+router.get('/API/penerimaan/all/:no', apicontroller.APIgetpenerimaanall);
+// post
+router.post('/API/penerimaan/:no', apicontroller.APIsearch);
 
 
 //----------------------------------------------------------------------------------------------------------------//

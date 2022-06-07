@@ -60,6 +60,7 @@ const APIgetpenerimaan = async (req, res) =>{
     try {
         const no = req.params.no;
         const getdate = req.params.date;
+        // console.log(getdate);
         await inData.getData(no, getdate, function(data) {
             let listdata = [];
             for (let i = 0; i < data.rows.length; i++) {
@@ -113,6 +114,65 @@ const APIgetpenerimaan = async (req, res) =>{
     }
 }
 
+const APIgetpenerimaanall = async (req, res) =>{
+    try {
+        const no = req.params.no;
+        await inData.getAllData(no, function(data) {
+            let listdata = [];
+            for (let i = 0; i < data.rows.length; i++) {
+                let time = data.rows[i].timestamp;
+                let str = time.toString();
+                let year = str.substring(0,4);
+                let month = str.substring(4,6);
+                let day = str.substring(6,8);
+                let tanggal = day+"/"+month+"/"+year;  
+                listdata.push({
+                    kd: data.rows[i].kd,
+                    no: data.rows[i].no,
+                    timestamp: data.rows[i].timestamp,
+                    tanggal: tanggal,
+                    uraian: data.rows[i].uraian,
+                    satuan: data.rows[i].satuan,
+                    satuanrp: rupiah.convert(data.rows[i].satuan),
+                    jumlah: data.rows[i].jumlah,
+                    total: data.rows[i].total,
+                    totalrp: rupiah.convert(data.rows[i].total),
+                    sumber: data.rows[i].sumber,
+                    kas: data.rows[i].kas,
+                    colors:data.rows[i].color,                
+                    nama :data.rows[i].nama,
+                    indikatorkelas :data.rows[i].warna 
+                })             
+            }
+            inData.getBank(function(kdata) {
+                let listkas = [];
+                    for (let i = 0; i < kdata.qrows.length; i++) {
+                        listkas.push({
+                            idkas: kdata.qrows[i].id,
+                            nkas: kdata.qrows[i].nama,
+                            ckas: kdata.qrows[i].color
+                        })                        
+                    }
+                    getmenu(function(listmenu) {
+                        const getsub = listmenu.in.filter(item => item.sub === parseInt(no));
+                        const dbs = getsub[0].dbsiswa;
+                        res.send({
+                            data: listdata,
+                            dkas: listkas,
+                            listmenu,
+                            dbs,
+                        });
+                    });
+            })
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const APIsearch = async (req, res) =>{
+
+}
 
 // to render menu
 async function getmenu(callback) {
@@ -130,5 +190,7 @@ async function getmenu(callback) {
 module.exports ={
     getKasApi,
     getmenu,
-    APIgetpenerimaan
+    APIgetpenerimaan,
+    APIgetpenerimaanall,
+    APIsearch
 }
