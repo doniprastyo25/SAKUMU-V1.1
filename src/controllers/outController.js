@@ -180,6 +180,7 @@ const getTunggakan = async (req, res) => {
             if (data.status === "ok") {
                 getmenu(function(listmenu) {
                     const getsub = listmenu.out.filter(item => item.sub === parseInt(no));
+                    const jmenu = getsub[0].kd
                     const dbs = getsub[0].dbsiswa;
                     res.render('./pages/tunggakan-siswa',{
                         title: getsub[0].dess,
@@ -188,6 +189,8 @@ const getTunggakan = async (req, res) => {
                         menu: 'pengeluaran',
                         layout: 'main-layout',
                         sub: no,
+                        dbs,
+                        jmenu,
                         listmenu,
                         list: data.list,
                         filter: data.filter
@@ -621,7 +624,7 @@ const update = async (req, res) => {
     const now = new Date();
     const jam = date.format(now, 'HHmmss');
     const sortirtgl = replaceAll("-","",tgl);
-    const tglfix = sortirtgl+jam
+    const tglfix = sortirtgl+jam;
     const result = await outNew.updateData(no,id,tglfix,uraian,satuan,jumlah,dana,kas, function(data) {
         if(data['status'] === 'ok'){
             res.redirect(301,'/pengeluaran/'+no);

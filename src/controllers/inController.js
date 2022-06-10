@@ -185,6 +185,9 @@ const getTunggakan = async (req, res) => {
             if (data.status === "ok") {
                 getmenu(function(listmenu) {
                     const getsub = listmenu.in.filter(item => item.sub === parseInt(no));
+                    // console.log(getsub);
+                    const jmenu = getsub[0].kd
+                    // console.log();
                     const dbs = getsub[0].dbsiswa;
                     res.render('./pages/tunggakan-siswa',{
                         title: getsub[0].dess,
@@ -193,6 +196,8 @@ const getTunggakan = async (req, res) => {
                         menu: 'penerimaan',
                         layout: 'main-layout',
                         sub: no,
+                        dbs,
+                        jmenu,
                         listmenu,
                         list: data.list,
                         filter: data.filter
@@ -596,7 +601,7 @@ const edit = async (req,res) => {
     const no = req.params.no
     const id = req.query.id
     const result = await inData.getEdit(no,id,function(data) {
-        console.log(data.field.timestamp);
+        // console.log(data.field.timestamp);
         const tgl = data.field.timestamp
         const btgl = tgl.toString()
         const getTahun = btgl.substring(0,4)

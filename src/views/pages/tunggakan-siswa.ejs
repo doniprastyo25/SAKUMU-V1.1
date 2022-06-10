@@ -6,19 +6,35 @@
             <p class="p-0 m-0"><%= subtitle %></p>
         </div>
         <div class="col-sm-4 text-end">
-            <form method="get" action="/penerimaan/<%= sub %>/tunggakan">
-                <div class="row">
-                    <div class="col-sm-3">
-                        Filter :
-                    </div>
-                    <div class="col-sm">
-                        <div class="input-group">
-                            <input type="month" class="form-control form-control-sm" id="filter" name="filter" value="<%= filter %>" required>
-                            <button type="submit" class="btn btn-primary btn-sm">Terapkan</button>
+            <% if (menu === 1) { %>
+                <form method="get" action="/penerimaan/<%= sub %>/tunggakan">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            Filter :
                         </div>
-                    </div>
-                </div>    
-            </form>
+                        <div class="col-sm">
+                            <div class="input-group">
+                                <input type="month" class="form-control form-control-sm" id="filter" name="filter" value="<%= filter %>" required>
+                                <button type="submit" class="btn btn-primary btn-sm">Terapkan</button>
+                            </div>
+                        </div>
+                    </div>    
+                </form>
+                <% } else { %>
+                <form method="get" action="/pengeluaran/<%= sub %>/tunggakan">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            Filter :
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group">
+                                <input type="month" class="form-control form-control-sm" id="filter" name="filter" value="<%= filter %>" required>
+                                <button type="submit" class="btn btn-primary btn-sm">Terapkan</button>
+                            </div>
+                        </div>
+                    </div>    
+                </form>     
+            <% } %> 
         </div>
     </div>
     <hr>

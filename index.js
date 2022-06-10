@@ -58,7 +58,7 @@ app.use("/filepath", express.static(path.join(__dirname + "/upload")));
 app.use("node", express.static(path.join(__dirname + "/node_modules/read-excel-file/node")));
 
 //server
-app.listen(8000, ()=>{
+app.listen(8001, ()=>{
     console.log("");
     console.log(" =====================================");
     console.log("                (SAKUMU)              ");
@@ -68,7 +68,7 @@ app.listen(8000, ()=>{
     console.log(" Powered by :");
     console.log(" PT BPRS Mitra Mentari Sejahtera");
     console.log("");
-    console.log(" url : http://localhost:8000");
+    console.log(" url : http://localhost:8001");
     console.log("");
     console.log(" app version 1.0");
     console.log(" _________________________________");
@@ -80,70 +80,70 @@ app.listen(8000, ()=>{
 
 
 // -------------------------------service cek koneksi-----------------------------------------//
-setInterval(() => {
-    (async () => {
-        // console.log(await isOnline());
-        if (await isOnline() == true) {
-            console.log('sedang online');
-            gettoken(function(data) {
-                // console.log(data.status);
-                if (data.status == true) {
-                    // console.log(data.token);
-                    try {
-                        axios({
-                            method: 'get',
-                            // url: 'http://localhost:3123/API/cektoken',
-                            url: 'http://467a0269edbd.sn.mynetname.net:80/API/cektoken',
-                            // url: 'http://192.168.151.31:3123/API/cektoken',
-                            data: {token: data.token},
-                            timeout: 10000
-                        }).then(function(response) {
-                            const res = response.data;
-                            if (res.data.status == 'ok') {
-                                console.log('token sesuai');
-                            } else {
-                                console.log('token tidak sesuai');
-                                try {
-                                    db.prepare(`DELETE FROM APPCONFIG`).run();
-                                } catch (error) {
-                                    console.log('request time ouut');
-                                }
-                            }
-                        }).catch(function (error) {
-                            if (error.code == 'ECONNREFUSED') {
-                                console.log('server sedang offline');
-                            }
-                        })
-                    } catch (error) {
-                        // console.log(error);
-                        console.log('request  time out');
-                    }
-                } else {
-                    console.log('error');
-                }
-            })
-        } else {
-            console.log('sedang offline');
-        }
-    })();
-  }, 100000);
+// setInterval(() => {
+//     (async () => {
+//         // console.log(await isOnline());
+//         if (await isOnline() == true) {
+//             console.log('sedang online');
+//             gettoken(function(data) {
+//                 // console.log(data.status);
+//                 if (data.status == true) {
+//                     // console.log(data.token);
+//                     try {
+//                         axios({
+//                             method: 'get',
+//                             // url: 'http://localhost:3123/API/cektoken',
+//                             url: 'http://467a0269edbd.sn.mynetname.net:80/API/cektoken',
+//                             // url: 'http://192.168.151.31:3123/API/cektoken',
+//                             data: {token: data.token},
+//                             timeout: 10000
+//                         }).then(function(response) {
+//                             const res = response.data;
+//                             if (res.data.status == 'ok') {
+//                                 console.log('token sesuai');
+//                             } else {
+//                                 console.log('token tidak sesuai');
+//                                 try {
+//                                     db.prepare(`DELETE FROM APPCONFIG`).run();
+//                                 } catch (error) {
+//                                     console.log('request time ouut');
+//                                 }
+//                             }
+//                         }).catch(function (error) {
+//                             if (error.code == 'ECONNREFUSED') {
+//                                 console.log('server sedang offline');
+//                             }
+//                         })
+//                     } catch (error) {
+//                         // console.log(error);
+//                         console.log('request  time out');
+//                     }
+//                 } else {
+//                     console.log('error');
+//                 }
+//             })
+//         } else {
+//             console.log('sedang offline');
+//         }
+//     })();
+//   }, 100000);
 
-  const gettoken = async (callback) => {
-    try {
-        const get = `SELECT * FROM APPCONFIG`;
-        const tok = db.prepare(get).get();
-        if (tok) {
-            const token = tok.token
-            callback({status:true , token: token})
-            // console.log(token);
-        } else {
-            // callback({status:false , token: error})
-            console.log('token belum ada');
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
+//   const gettoken = async (callback) => {
+//     try {
+//         const get = `SELECT * FROM APPCONFIG`;
+//         const tok = db.prepare(get).get();
+//         if (tok) {
+//             const token = tok.token
+//             callback({status:true , token: token})
+//             // console.log(token);
+//         } else {
+//             // callback({status:false , token: error})
+//             console.log('token belum ada');
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 //----------------------------------- end service cek koneksi --------------------------------------//
 
 
